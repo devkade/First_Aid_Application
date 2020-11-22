@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_main"
+        android:enabled="true"
+        android:checked="true"
+        android:title="main" />
+    <item
+        android:id="@+id/contents"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_contents"
+        android:enabled="true"
+        android:title="contents"/>
+    <item
+        android:id="@+id/quiz"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_quiz"
+        android:enabled="true"
+        android:title="quiz"/>
+    <item
+        android:id="@+id/setting"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_setting"
+        android:enabled="true"
+        android:title="setting"/>
+</menu>
