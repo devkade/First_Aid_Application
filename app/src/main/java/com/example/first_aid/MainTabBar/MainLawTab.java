@@ -1,4 +1,4 @@
-package com.example.first_aid;
+package com.example.first_aid.MainTabBar;
 
 import android.os.Bundle;
 
@@ -8,13 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.first_aid.R;
 
-public class FragmentContents extends Fragment {
+
+public class MainLawTab extends Fragment {
+
+    public MainLawTab()
+    {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contents, container, false);
+        return inflater.inflate(R.layout.fragment_main_law_tab, container, false);
     }
 }

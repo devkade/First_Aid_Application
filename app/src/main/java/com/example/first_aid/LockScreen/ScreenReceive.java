@@ -1,4 +1,4 @@
-package com.example.first_aid;
+package com.example.first_aid.LockScreen;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

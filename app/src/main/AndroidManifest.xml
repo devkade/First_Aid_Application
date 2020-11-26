@@ -17,10 +17,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".ScreenReceive"></receiver>
-        <service android:name=".ScreenService"></service>
-        <service android:name=".MyService"></service>
-        <activity android:name=".LockScreenActivity"></activity>
+        <receiver android:name=".LockScreen.ScreenReceive"></receiver>
+        <service android:name=".LockScreen.ScreenService"></service>
+        <service android:name=".LockScreen.MyService"></service>
+        <activity android:name=".LockScreen.LockScreenActivity"></activity>
 
     </application>
 

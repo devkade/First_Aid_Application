@@ -1,4 +1,4 @@
-package com.example.first_aid;
+package com.example.first_aid.LockScreen;
 
 import android.app.Service;
 import android.content.Intent;

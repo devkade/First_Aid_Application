@@ -2,11 +2,14 @@ package com.example.first_aid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.first_aid.BottomNavigationBarFragment.FragmentContents;
+import com.example.first_aid.BottomNavigationBarFragment.FragmentMain;
+import com.example.first_aid.BottomNavigationBarFragment.FragmentQuiz;
+import com.example.first_aid.BottomNavigationBarFragment.FragmentSetting;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
