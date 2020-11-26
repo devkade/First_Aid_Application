@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".ScreenReceive"></receiver>
+        <service android:name=".ScreenService"></service>
+        <service android:name=".MyService"></service>
+        <activity android:name=".LockScreenActivity"></activity>
+
     </application>
 
 </manifest>
