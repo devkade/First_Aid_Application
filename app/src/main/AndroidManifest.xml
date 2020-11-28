@@ -22,12 +22,6 @@
         <service android:name=".LockScreen.MyService"></service>
         <activity android:name=".LockScreen.LockScreenActivity"></activity>
 
-        <receiver android:name=".LockScreen.RestartService" android:process=":remote">
-            <intent-filter>
-                <action android:name="ACTION.Restart.PersistentService"></action>
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>
