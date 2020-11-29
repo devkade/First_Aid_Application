@@ -2,6 +2,8 @@ package com.example.first_aid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import com.example.first_aid.BottomNavigationBarFragment.FragmentContents;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentMain;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentQuiz;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentSetting;
+import com.example.first_aid.MainTabBar.MainNewsTab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
 
         // 프래그먼트 생성
         fragmentMain = new FragmentMain();
