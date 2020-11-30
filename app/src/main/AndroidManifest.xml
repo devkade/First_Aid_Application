@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.first_aid">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.BOOT_COMPLETED" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,9 +26,23 @@
         <service android:name=".LockScreen.MyService"></service>
         <activity android:name=".LockScreen.LockScreenActivity"></activity>
 
-        <receiver android:name=".LockScreen.RestartService" android:process=":remote">
+        <service
+            android:name=".LockScreen.PersistentService"
+            android:enabled="true"
+            android:process=":remote">
             <intent-filter>
-                <action android:name="ACTION.Restart.PersistentService"></action>
+                <action android:name="com.example.persistentsvc.sess" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".LockScreen.RestartService"
+            android:exported="false"
+            android:process=":remote"
+            android:label="RestartService">
+            <intent-filter>
+                <action android:name="ACTION.RESTART.PersistentService" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
