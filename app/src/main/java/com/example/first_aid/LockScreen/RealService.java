@@ -37,34 +37,33 @@ public class RealService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         serviceIntent = intent;
-        showToast(getApplication(), "Start Service");
+        //showToast(getApplication(), "Start Service");
 
         mainThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                SimpleDateFormat sdf = new SimpleDateFormat("aa hh:mm");
                 boolean run = true;
-                String on;
+                //String on;
                 PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
                 boolean screen;
 
-                Intent intent1 = new Intent(getApplicationContext(), LockScreenActivity.class);
-
                 while (run) {
                     try {
+                        Thread.sleep(1000 * 10);
+
                         screen = pm.isScreenOn();
 
-                        if(screen)
-                            on = "True";
-                        else
-                            on = "False";
+                        if(!screen) {
+                        //    on = "False";
+                            Intent intent1 = new Intent(getApplicationContext(), LockScreenActivity.class);
+                            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP|
+                                    Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                        Thread.sleep(1000 * 5); // 1 minute
-                        Date date = new Date();
-                        //showToast(getApplication(), sdf.format(date));
-                        sendNotification(on);
-                        if(!screen)
                             startActivity(intent1);
+                        }
+                        //else(screen)
+                        //    on = "True";
+                        //sendNotification(on);
                     } catch (InterruptedException e) {
                         run = false;
                         e.printStackTrace();
@@ -76,6 +75,7 @@ public class RealService extends Service {
 
         return START_NOT_STICKY;
     }
+
 
     @Override
     public void onDestroy() {
@@ -106,6 +106,7 @@ public class RealService extends Service {
         return super.onUnbind(intent);
     }
 
+    /*
     public void showToast(final Application application, final String msg) {
         Handler h = new Handler(application.getMainLooper());
         h.post(new Runnable() {
@@ -115,6 +116,8 @@ public class RealService extends Service {
             }
         });
     }
+     */
+
 
     protected void setAlarmTimer() {
         final Calendar c = Calendar.getInstance();
@@ -126,11 +129,11 @@ public class RealService extends Service {
         AlarmManager mAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         mAlarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), sender);
     }
-
+    /*
     private void sendNotification(String messageBody) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 // Request code , intent, PendingIntent.FLAG_ONE_SHOT);
 
         String channelId = "fcm_default_channel";//getString(R.string.default_notification_channel_id);
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -152,6 +155,7 @@ public class RealService extends Service {
             notificationManager.createNotificationChannel(channel);
         }
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(0 // ID of notification , notificationBuilder.build());
     }
+    */
 }

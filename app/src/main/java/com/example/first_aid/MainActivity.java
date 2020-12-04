@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             startService(serviceIntent);
         } else {
             serviceIntent = RealService.serviceIntent;//getInstance().getApplication();
-            Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
         }
 
 
