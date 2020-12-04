@@ -21,6 +21,9 @@
         <service android:name=".LockScreen.ScreenService"></service>
         <service android:name=".LockScreen.MyService"></service>
         <activity android:name=".LockScreen.LockScreenActivity"></activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 
