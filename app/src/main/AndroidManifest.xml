@@ -5,8 +5,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
-
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.First_Aid">
+        <activity android:name=".FirstAid.FirstAidPage1_1"></activity>
+        <activity android:name=".FirstAid.FirstAidPage1" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,24 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".LockScreen.LockScreenActivity"
+        <activity
+            android:name=".LockScreen.LockScreenActivity"
             android:launchMode="singleInstance"
-            android:noHistory = "true"/>
+            android:noHistory="true" />
 
         <service
             android:name=".LockScreen.RealService"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name=".LockScreen.RestartService"
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".LockScreen.AlarmReceiver"/>
-
+        <receiver android:name=".LockScreen.AlarmReceiver" />
         <receiver
             android:name=".LockScreen.RebootReceiver"
             android:enabled="true"
@@ -49,7 +47,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
