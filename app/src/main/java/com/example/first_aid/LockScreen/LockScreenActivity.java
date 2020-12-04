@@ -1,41 +1,70 @@
 package com.example.first_aid.LockScreen;
 
 import android.app.Activity;
+import android.app.KeyguardManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.first_aid.MainActivity;
 import com.example.first_aid.R;
 
 public class LockScreenActivity extends Activity {
+
+    private Intent serviceIntent;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setShowWhenLocked(true);
+            KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+            keyguardManager.requestDismissKeyguard(this, null);
+        }else{
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                    | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+        }
         setContentView(R.layout.activity_lock_screen);
 
-        Intent passedIntent = getIntent();
-        processCommand(passedIntent);
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-    }
+        PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
+        boolean isWhiteListing = false;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            isWhiteListing = pm.isIgnoringBatteryOptimizations(getApplicationContext().getPackageName());
+        }
+        if (!isWhiteListing) {
+            Intent intent = new Intent();
+            intent.setAction(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
+            startActivity(intent);
+        }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        processCommand(getIntent());
-
-        super.onNewIntent(intent);
-    }
-
-// 이와 같이 모든 경우에 서비스로부터 받은 인텐트가 처리 될 수 있도록한다.
-// 이제 processCommand() 메서드 정의.
-
-    private void processCommand(Intent intent) {
-        if (intent != null) {
-            String command = intent.getStringExtra("command");
-            String name = intent.getStringExtra("name");
-
-            Toast.makeText(this, "서비스로부터 전달받은 데이터: " + command + ", " + name, Toast.LENGTH_LONG).show();
+        if (RealService.serviceIntent==null) {
+            serviceIntent = new Intent(this, RealService.class);
+            startService(serviceIntent);
+        } else {
+            serviceIntent = RealService.serviceIntent;//getInstance().getApplication();
+            //Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
         }
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (serviceIntent!=null) {
+            stopService(serviceIntent);
+            serviceIntent = null;
+        }
+        this.finish();
+    }
+
 }

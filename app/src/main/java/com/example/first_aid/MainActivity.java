@@ -2,6 +2,17 @@ package com.example.first_aid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.PowerManager;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,7 +26,15 @@ import com.example.first_aid.BottomNavigationBarFragment.FragmentSetting;
 import com.example.first_aid.MainTabBar.MainNewsTab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import com.example.first_aid.LockScreen.AlarmReceiver;
+import com.example.first_aid.LockScreen.RealService;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Intent serviceIntent;
 
     BottomNavigationView bottomNavigationView;
     FragmentMain fragmentMain;
@@ -28,6 +47,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        // 서비스 실행
+        PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
+        boolean isWhiteListing = false;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            isWhiteListing = pm.isIgnoringBatteryOptimizations(getApplicationContext().getPackageName());
+        }
+        if (!isWhiteListing) {
+            Intent intent = new Intent();
+            intent.setAction(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
+            startActivity(intent);
+        }
+
+        if (RealService.serviceIntent==null) {
+            serviceIntent = new Intent(this, RealService.class);
+            startService(serviceIntent);
+        } else {
+            serviceIntent = RealService.serviceIntent;//getInstance().getApplication();
+            //Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
+        }
 
 
         // 프래그먼트 생성
@@ -70,5 +110,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (serviceIntent!=null) {
+            stopService(serviceIntent);
+            serviceIntent = null;
+        }
     }
 }
