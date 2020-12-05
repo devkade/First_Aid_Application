@@ -10,7 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.first_aid.Quiz.QuizActivity;
+import com.example.first_aid.Quiz.QuizA;
+import com.example.first_aid.Quiz.QuizB;
+import com.example.first_aid.Quiz.QuizC;
+import com.example.first_aid.Quiz.QuizD;
+import com.example.first_aid.Quiz.QuizE;
+import com.example.first_aid.Quiz.QuizF;
 import com.example.first_aid.R;
 
 
@@ -46,7 +51,57 @@ public class FragmentQuiz extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(getActivity().getApplicationContext(),QuizActivity.class);
+                Intent intent=new Intent(getActivity().getApplicationContext(), QuizA.class);
+                startActivity(intent);
+            }
+        });
+
+        B1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getActivity().getApplicationContext(), QuizB.class);
+                startActivity(intent);
+            }
+        });
+
+        C1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getActivity().getApplicationContext(), QuizC.class);
+                startActivity(intent);
+            }
+        });
+
+        D1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getActivity().getApplicationContext(), QuizD.class);
+                startActivity(intent);
+            }
+        });
+
+        E1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getActivity().getApplicationContext(), QuizE.class);
+                startActivity(intent);
+            }
+        });
+
+        F1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getActivity().getApplicationContext(), QuizF.class);
                 startActivity(intent);
             }
         });

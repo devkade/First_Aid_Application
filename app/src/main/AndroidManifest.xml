@@ -49,8 +49,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Quiz.QuizActivity"></activity>
-
+        <activity android:name=".Quiz.QuizA"></activity>
     </application>
 
 </manifest>
