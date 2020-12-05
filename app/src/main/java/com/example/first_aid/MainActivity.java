@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -24,11 +25,18 @@ import com.example.first_aid.BottomNavigationBarFragment.FragmentMain;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentQuiz;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentSetting;
 import com.example.first_aid.MainTabBar.MainNewsTab;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.example.first_aid.LockScreen.AlarmReceiver;
 import com.example.first_aid.LockScreen.RealService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
 
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
 
         // 서비스 실행
         PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);

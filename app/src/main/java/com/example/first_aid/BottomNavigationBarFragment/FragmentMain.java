@@ -1,22 +1,16 @@
 package com.example.first_aid.BottomNavigationBarFragment;
 
-import android.content.Context;
-import android.os.Bundle;
 
+import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
-
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.first_aid.Adapter.SectionPagerAdapter;
+import com.example.first_aid.MainTabBar.MainFirstAidTab;
 import com.example.first_aid.MainTabBar.MainHealthTab;
-import com.example.first_aid.MainTabBar.MainLawTab;
 import com.example.first_aid.MainTabBar.MainNewsTab;
 import com.example.first_aid.R;
 import com.google.android.material.tabs.TabLayout;
@@ -78,9 +72,9 @@ public class FragmentMain extends Fragment {
     private void setUpViewPager(ViewPager viewPager) {
         SectionPagerAdapter adapter = new SectionPagerAdapter((getChildFragmentManager()));
 
-        adapter.addFragment(new MainNewsTab(), "News");
-        adapter.addFragment(new MainHealthTab(), "Health");
-        adapter.addFragment(new MainLawTab(), "Law");
+        adapter.addFragment(new MainFirstAidTab(), "응급처치");
+        adapter.addFragment(new MainNewsTab(), "뉴스");
+        adapter.addFragment(new MainHealthTab(), "건강정보");
 
         viewPager.setAdapter(adapter);
     }

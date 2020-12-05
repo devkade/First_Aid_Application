@@ -1,15 +1,333 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/fragment_quiz">
+    android:background="#00ffffff"
+    android:backgroundTint="#00ffffff">
 
-    <ListView
-        android:id="@+id/listview1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/Category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="카테고리"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.247" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/Odap"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
+        android:text="오답노트"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textDirection="firstStrongRtl"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Category"
+        app:layout_constraintVertical_bias="0.065" />
+
+    <Button
+        android:id="@+id/O1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="문제풀기"
+        app:layout_constraintBottom_toBottomOf="@+id/Odap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Odap"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/O2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="해설보기"
+        app:layout_constraintBottom_toBottomOf="@+id/Odap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/F1"
+        app:layout_constraintTop_toTopOf="@+id/Odap" />
+
+    <TextView
+        android:id="@+id/A"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
+        android:text="기본응급처치"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textDirection="firstStrongRtl"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Odap"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/A1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="문제풀기"
+        app:layout_constraintBottom_toBottomOf="@+id/A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/A"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/A2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="해설보기"
+        app:layout_constraintBottom_toTopOf="@+id/B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/F1"
+        app:layout_constraintTop_toBottomOf="@+id/Odap" />
+
+    <TextView
+        android:id="@+id/B"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
+        android:text="심장경련, 기도폐쇄"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textDirection="firstStrongRtl"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Category"
+        app:layout_constraintVertical_bias="0.362" />
+
+    <Button
+        android:id="@+id/B1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="문제풀기"
+        app:layout_constraintBottom_toTopOf="@+id/C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/B"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/B2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="해설보기"
+        app:layout_constraintBottom_toBottomOf="@+id/B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toEndOf="@+id/F1"
+        app:layout_constraintTop_toTopOf="@+id/B"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/C"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
+        android:text="동물, 곤충에 물렸을 때"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textDirection="firstStrongRtl"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Category"
+        app:layout_constraintVertical_bias="0.468" />
+
+    <Button
+        android:id="@+id/C1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="문제풀기"
+        app:layout_constraintBottom_toTopOf="@+id/D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/C" />
+
+    <Button
+        android:id="@+id/C2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="해설보기"
+        app:layout_constraintBottom_toBottomOf="@+id/C"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/F1"
+        app:layout_constraintTop_toTopOf="@+id/C" />
+
+    <TextView
+        android:id="@+id/D"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
+        android:text="중독 및 이물질"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textDirection="firstStrongRtl"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Category"
+        app:layout_constraintVertical_bias="0.598" />
+
+    <Button
+        android:id="@+id/D1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="문제풀기"
+        app:layout_constraintBottom_toBottomOf="@+id/D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/D" />
+
+    <Button
+        android:id="@+id/D2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="해설보기"
+        app:layout_constraintBottom_toBottomOf="@+id/D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/F1"
+        app:layout_constraintTop_toTopOf="@+id/D" />
+
+    <TextView
+        android:id="@+id/E"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
+        android:text="열, 냉에 의한 손상"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textDirection="firstStrongRtl"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Category"
+        app:layout_constraintVertical_bias="0.731" />
+
+    <Button
+        android:id="@+id/E1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="문제풀기"
+        app:layout_constraintBottom_toTopOf="@+id/F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/D" />
+
+    <Button
+        android:id="@+id/E2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="해설보기"
+        app:layout_constraintBottom_toTopOf="@+id/F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/F1"
+        app:layout_constraintTop_toBottomOf="@+id/D" />
+
+    <TextView
+        android:id="@+id/F"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="add"
+        android:text="절단 및 출혈"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textDirection="firstStrongRtl"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Category"
+        app:layout_constraintVertical_bias="0.864" />
+
+    <Button
+        android:id="@+id/F1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="문제풀기"
+        app:layout_constraintBottom_toBottomOf="@+id/F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/F" />
+
+    <Button
+        android:id="@+id/F2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="해설보기"
+        app:layout_constraintBottom_toBottomOf="@+id/F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/F1"
+        app:layout_constraintTop_toTopOf="@+id/F" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
