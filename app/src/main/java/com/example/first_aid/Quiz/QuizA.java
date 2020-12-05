@@ -25,10 +25,12 @@ public class QuizA extends AppCompatActivity {
         setA=oxquiz.getoxA();
 
         for(int i=0; i<setA.size(); i++){
-            TextView textView1 = (TextView) findViewById(R.id.quiz_num) ;
-            textView1.setText(setA.get(i).get(1)) ;
-            TextView textView2 = (TextView) findViewById(R.id.quiz_question) ;
-            textView1.setText(setA.get(i).get(2)) ;
+            TextView textView1 = (TextView) findViewById(R.id.quiz_category) ;
+            textView1.setText(setA.get(i).get(0)) ;
+            TextView textView2 = (TextView) findViewById(R.id.quiz_num) ;
+            textView2.setText(setA.get(i).get(1)) ;
+            TextView textView3 = (TextView) findViewById(R.id.quiz_question) ;
+            textView3.setText(setA.get(i).get(2)) ;
 
             Button O = (Button) findViewById(R.id.O) ;
             List<List<String>> finalSetA = setA;
@@ -45,8 +47,8 @@ public class QuizA extends AppCompatActivity {
                 }
             }) ;
 
-            Button X = (Button) findViewById(R.id.O) ;
-            O.setOnClickListener(new Button.OnClickListener() {
+            Button X = (Button) findViewById(R.id.X) ;
+            X.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(finalSetA.get(finalI).get(3)=="X"){
