@@ -38,16 +38,30 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
+import java.util.Random;
 
 
 public class LockScreenActivity extends Activity {
     private ImageView mImg;
     private static final String IMAGEVIEW_TAG = "unlock_btn";
     private Intent serviceIntent;
+    private int layout;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+        int rand = random.nextInt(2) + 1;
+
+        if(rand == 1){
+            layout = R.layout.activity_lock_screen;
+        }else if(rand == 2){
+            layout = R.layout.activity_lock_screen_2;
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             setShowWhenLocked(true);
@@ -57,7 +71,7 @@ public class LockScreenActivity extends Activity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                     | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         }
-        setContentView(R.layout.activity_lock_screen);
+        setContentView(layout);
 
 
         PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
@@ -80,13 +94,16 @@ public class LockScreenActivity extends Activity {
             //Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
         }
 
-        mImg = (ImageView) findViewById(R.id.unlock_btn);
-        mImg.setTag(IMAGEVIEW_TAG);
+        if(rand == 1) {
+            mImg = (ImageView) findViewById(R.id.unlock_btn);
+            mImg.setTag(IMAGEVIEW_TAG);
 
-        mImg.setOnLongClickListener(new LongClickListener());
+            mImg.setOnLongClickListener(new LongClickListener());
 
-        findViewById(R.id.x).setOnDragListener(new DragListener());
-        findViewById(R.id.o).setOnDragListener(new DragListener());
+            findViewById(R.id.x).setOnDragListener(new DragListener());
+            findViewById(R.id.o).setOnDragListener(new DragListener());
+            findViewById(R.id.nothing).setOnDragListener(new DragListener());
+        }
 
     }
 
@@ -116,6 +133,8 @@ public class LockScreenActivity extends Activity {
         Drawable normalShape = ResourcesCompat.getDrawable(getResources(), R.drawable.lockscreen_normal_shape, null);
         Drawable targetShape = ResourcesCompat.getDrawable(getResources(), R.drawable.lockscreen_target_shape, null);
 
+
+
         public boolean onDrag(View v, DragEvent event) {
 
 
@@ -132,13 +151,18 @@ public class LockScreenActivity extends Activity {
                 case DragEvent.ACTION_DRAG_ENTERED:
                     Log.d("DragClickListener", "ACTION_DRAG_ENTERED");
                     // 이미지가 들어왔다는 것을 알려주기 위해 배경이미지 변경
-                    v.setBackground(targetShape);
+                    if(v != findViewById(R.id.nothing)){
+                        v.setBackground(targetShape);
+                    }
                     break;
 
                 // 드래그한 이미지가 영역을 빠져 나갈때
                 case DragEvent.ACTION_DRAG_EXITED:
                     Log.d("DragClickListener", "ACTION_DRAG_EXITED");
-                    v.setBackground(normalShape);
+
+                    if(v != findViewById(R.id.nothing)){
+                        v.setBackground(normalShape);
+                    }
                     break;
 
                 // 이미지를 드래그해서 드랍시켰을때
@@ -165,25 +189,41 @@ public class LockScreenActivity extends Activity {
 
                         sendNotification("정답입니다.");
 
-                        LinearLayout containView = (LinearLayout) v;
+                        ConstraintLayout containView = (ConstraintLayout) v;
                         containView.addView(view);
                         view.setVisibility(View.VISIBLE);
 
                         finish();
 
+                    }else if (v == findViewById(R.id.nothing) | v == findViewById(R.id.o) | v == findViewById(R.id.x)) {
+                        View view = (View) event.getLocalState();
+                        ViewGroup viewgroup = (ViewGroup) view.getParent();
+                        viewgroup.removeView(view);
+
+                        sendNotification("다시 드래그하세요.");
+
+                        ConstraintLayout containView = (ConstraintLayout) findViewById(R.id.base);
+                        containView.addView(view);
+                        view.setVisibility(View.VISIBLE);
+
                     }else {
                         View view = (View) event.getLocalState();
                         view.setVisibility(View.VISIBLE);
                         Context context = getApplicationContext();
-                        Toast.makeText(context, "이미지를 다른 지역에 드랍할수 없습니다.", Toast.LENGTH_LONG).show();
+
+                        sendNotification("다시 드래그하셔야 합니다.");
+
+                        ConstraintLayout containView = (ConstraintLayout) v;
+                        containView.addView(view);
                         break;
                     }
                     break;
 
                 case DragEvent.ACTION_DRAG_ENDED:
                     Log.d("DragClickListener", "ACTION_DRAG_ENDED");
-                    v.setBackground(normalShape); // go back to normal shape
-
+                    if(v != findViewById(R.id.nothing)) {
+                        v.setBackground(normalShape); // go back to normal shape
+                    }
                 default:
                     break;
             }
