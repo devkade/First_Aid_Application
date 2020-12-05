@@ -27,12 +27,26 @@ public class FragmentQuiz extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
         Button O1 = (Button) view.findViewById(R.id.O1);
-        O1.setOnClickListener(new View.OnClickListener()
+        Button O2 = (Button) view.findViewById(R.id.O2);
+        Button A1 = (Button) view.findViewById(R.id.A1);
+        Button A2 = (Button) view.findViewById(R.id.A2);
+        Button B1 = (Button) view.findViewById(R.id.B1);
+        Button B2 = (Button) view.findViewById(R.id.B2);
+        Button C1 = (Button) view.findViewById(R.id.C1);
+        Button C2 = (Button) view.findViewById(R.id.C2);
+        Button D1 = (Button) view.findViewById(R.id.D1);
+        Button D2 = (Button) view.findViewById(R.id.D2);
+        Button E1 = (Button) view.findViewById(R.id.E1);
+        Button E2 = (Button) view.findViewById(R.id.E2);
+        Button F1 = (Button) view.findViewById(R.id.F1);
+        Button F2 = (Button) view.findViewById(R.id.F2);
+
+        A1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(getActivity(),QuizActivity.class);
+                Intent intent=new Intent(getActivity().getApplicationContext(),QuizActivity.class);
                 startActivity(intent);
             }
         });
