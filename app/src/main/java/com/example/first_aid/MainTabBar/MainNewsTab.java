@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.first_aid.Adapter.RecyclerViewAdapter;
+import com.example.first_aid.Adapter.MainNewsTabAdapter;
 import com.example.first_aid.R;
 
 public class MainNewsTab extends Fragment {
@@ -33,7 +33,7 @@ public class MainNewsTab extends Fragment {
 
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
         rv.setHasFixedSize(true);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(new String[]{"test one", "test two", "test three", "test four", "test five" , "test six" , "test seven"});
+        MainNewsTabAdapter adapter = new MainNewsTabAdapter(new String[]{"test one", "test two", "test three", "test four", "test five" , "test six" , "test seven"});
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

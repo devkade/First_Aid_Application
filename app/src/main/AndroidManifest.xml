@@ -23,7 +23,6 @@
             </intent-filter>
         </activity>
 
-
         <activity android:name=".LockScreen.LockScreenActivity"
             android:launchMode="singleInstance"
             android:noHistory = "true"/>
@@ -50,6 +49,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".Quiz.QuizA"></activity>
     </application>
 
 </manifest>
