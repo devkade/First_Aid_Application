@@ -32,7 +32,7 @@
                 android:textSize="16pt"/>
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/Baby1"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 app:srcCompat="@drawable/cpr_2" />
@@ -46,7 +46,7 @@
 " />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/Baby2"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 app:srcCompat="@drawable/cpr_3" />
@@ -58,7 +58,7 @@
                 android:text=" 2. 도움 및 119신고 요청 \n 주변 사람에게(꼭 집어서) 119신고를 부탁하고 \n 자동심장충격기를 요청한다." />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/Baby3"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 app:srcCompat="@drawable/cpr_4" />
@@ -70,7 +70,7 @@
                 android:text=" 3. 가슴압박 30회 시행 \n 환자의 가슴 중앙에 깍지낀 두손으로 몸과 수직이 되도록 압박한다. \n 압박은 성인기준 5cm 이상 1분에 100 ~ 120회 이상의 \n 속도로 압박한다." />
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/Baby4"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 app:srcCompat="@drawable/cpr_5" />
@@ -82,7 +82,7 @@
                 android:text=" 4. 인공호흡 2회 시행 \n 코를 막고 구조자의 입을 완전히 밀착하여 정상호흡을 \n 약 1초 동안 2회 숨을 불어 넣는다. \n (인공호흡이 어려울 경우 가슴압박을 지속적으로 시행)" />
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/Baby5"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 app:srcCompat="@drawable/cpr_6" />

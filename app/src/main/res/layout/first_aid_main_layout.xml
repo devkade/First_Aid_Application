@@ -18,7 +18,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cpr" />
+ />
 
     <Button
         android:id="@+id/cprButton"
@@ -39,7 +39,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bite_mark" />
+/>
 
     <Button
         android:id="@+id/biteButton"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="@+id/cprImageButton"
         app:layout_constraintStart_toStartOf="@+id/cprImageButton"
         app:layout_constraintTop_toBottomOf="@+id/cprButton"
-        app:srcCompat="@drawable/foreign_body" />
+/>
 
     <Button
         android:id="@+id/foreignbodyButton"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="@+id/biteimageButton"
         app:layout_constraintStart_toStartOf="@+id/biteimageButton"
         app:layout_constraintTop_toBottomOf="@+id/biteButton"
-        app:srcCompat="@drawable/poison" />
+ />
 
     <Button
         android:id="@+id/poisonButton"
@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="@+id/foreignbodyImageButton"
         app:layout_constraintStart_toStartOf="@+id/foreignbodyImageButton"
         app:layout_constraintTop_toBottomOf="@+id/foreignbodyButton"
-        app:srcCompat="@drawable/fire_and_ice" />
+ />
 
     <Button
         android:id="@+id/fireiceButton"
@@ -123,7 +123,7 @@
         app:layout_constraintEnd_toEndOf="@+id/poisonImageButton"
         app:layout_constraintStart_toStartOf="@+id/poisonImageButton"
         app:layout_constraintTop_toBottomOf="@+id/poisonButton"
-        app:srcCompat="@drawable/myocardial_infarction" />
+         />
 
     <Button
         android:id="@+id/importantsymptomButtom"

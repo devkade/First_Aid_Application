@@ -6,4 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".FirstAid.FirstAidPage1_2">
 
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="심폐소생술(CPR) 방법"
+                android:textAlignment="center"
+                android:textSize="16pt"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/Baby1"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:srcCompat="@drawable/cpr_2" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 1. 심정지 및 무호흡 확인 \n 양어깨를 두르리며 말을 걸고 눈과 귀로 심정지 및 무호흡 유무를 \n 확인한다. (반응과 호흡이 있으면 심정지 아님)
+
+" />
+
+            <ImageView
+                android:id="@+id/Baby2"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:srcCompat="@drawable/cpr_3" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 2. 도움 및 119신고 요청 \n 주변 사람에게(꼭 집어서) 119신고를 부탁하고 \n 자동심장충격기를 요청한다." />
+
+            <ImageView
+                android:id="@+id/Baby3"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:srcCompat="@drawable/cpr_4" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 3. 가슴압박 30회 시행 \n 환자의 가슴 중앙에 깍지낀 두손으로 몸과 수직이 되도록 압박한다. \n 압박은 성인기준 5cm 이상 1분에 100 ~ 120회 이상의 \n 속도로 압박한다." />
+
+            <ImageView
+                android:id="@+id/Baby4"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:srcCompat="@drawable/cpr_5" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 4. 인공호흡 2회 시행 \n 코를 막고 구조자의 입을 완전히 밀착하여 정상호흡을 \n 약 1초 동안 2회 숨을 불어 넣는다. \n (인공호흡이 어려울 경우 가슴압박을 지속적으로 시행)" />
+
+            <ImageView
+                android:id="@+id/Baby5"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:srcCompat="@drawable/cpr_6" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 5. 가슴압박, 인공호흡 반복 \n 이후에는 30회의 가슴압박과 2회의 인공호흡을 \n 119구급대원이 현장에 도착할 때까지 반복해서 시행한다." />
+        </LinearLayout>
+    </ScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
