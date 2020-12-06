@@ -27,6 +27,9 @@ public class QuizB extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_ox_layout);
+        if(count==setB.size()){
+            count=0;
+        }
             TextView textView1 = (TextView) findViewById(R.id.quiz_category);
             textView1.setText(setB.get(count).get(0));
             TextView textView2 = (TextView) findViewById(R.id.quiz_num);

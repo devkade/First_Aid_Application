@@ -17,6 +17,7 @@ import com.example.first_aid.Quiz.QuizD;
 import com.example.first_aid.Quiz.QuizE;
 import com.example.first_aid.Quiz.QuizF;
 import com.example.first_aid.R;
+import com.example.first_aid.database.odapNote;
 
 
 public class FragmentQuiz extends Fragment {
@@ -61,6 +62,8 @@ public class FragmentQuiz extends Fragment {
             @Override
             public void onClick(View v)
             {
+                odapNote odapB=new odapNote();
+                odapB.cleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizB.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
