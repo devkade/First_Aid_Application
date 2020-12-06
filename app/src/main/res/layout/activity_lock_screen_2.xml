@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        tools:src="@tools:sample/backgrounds/scenic"
         tools:visibility="visible" />
 
     <LinearLayout

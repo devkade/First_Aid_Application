@@ -48,10 +48,12 @@ public class QuizB extends AppCompatActivity {
                     count++;
                     if(count<setB.size()) {
                         Intent intent = new Intent(getApplicationContext(), QuizB.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
                     else{
                         Intent intent = new Intent(getApplicationContext(), ComB.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
                 }
@@ -70,10 +72,12 @@ public class QuizB extends AppCompatActivity {
                     count++;
                     if(count<setB.size()) {
                         Intent intent = new Intent(getApplicationContext(), QuizB.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
                     else{
                         Intent intent = new Intent(getApplicationContext(), ComB.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
                 }

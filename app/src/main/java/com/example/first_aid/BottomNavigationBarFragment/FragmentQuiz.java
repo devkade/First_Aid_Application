@@ -62,6 +62,7 @@ public class FragmentQuiz extends Fragment {
             public void onClick(View v)
             {
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizB.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });
@@ -72,6 +73,7 @@ public class FragmentQuiz extends Fragment {
             public void onClick(View v)
             {
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizC.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });
@@ -82,6 +84,7 @@ public class FragmentQuiz extends Fragment {
             public void onClick(View v)
             {
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizD.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });
@@ -92,6 +95,7 @@ public class FragmentQuiz extends Fragment {
             public void onClick(View v)
             {
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizE.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });
@@ -102,6 +106,7 @@ public class FragmentQuiz extends Fragment {
             public void onClick(View v)
             {
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizF.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });
