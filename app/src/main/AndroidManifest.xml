@@ -47,6 +47,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <activity android:name=".Quiz.QuizA"></activity>
+        <activity android:name=".Quiz.QuizB"></activity>
+        <activity android:name=".Quiz.ComB"></activity>
+
     </application>
 
 </manifest>
