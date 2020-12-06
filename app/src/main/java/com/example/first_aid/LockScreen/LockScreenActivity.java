@@ -34,10 +34,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.example.first_aid.database.oxquiz;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -46,8 +50,7 @@ public class LockScreenActivity extends Activity {
     private static final String IMAGEVIEW_TAG = "unlock_btn";
     private Intent serviceIntent;
     private int layout;
-
-
+    private String answer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,7 @@ public class LockScreenActivity extends Activity {
             //Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
         }
 
+        //퀴즈 액티비티 실행
         if(rand == 1) {
             mImg = (ImageView) findViewById(R.id.unlock_btn);
             mImg.setTag(IMAGEVIEW_TAG);
@@ -103,6 +107,44 @@ public class LockScreenActivity extends Activity {
             findViewById(R.id.x).setOnDragListener(new DragListener());
             findViewById(R.id.o).setOnDragListener(new DragListener());
             findViewById(R.id.nothing).setOnDragListener(new DragListener());
+
+
+            oxquiz oxquiz=new oxquiz();
+            TextView textView = (TextView) findViewById(R.id.lock_quiz);
+            List<List<String>> setquiz = new ArrayList<List<String>>();
+            int quiz_cat = random.nextInt(2) + 1;
+            int quiz_num = 0;
+
+            if(quiz_cat == 1){
+                setquiz = oxquiz.getoxA();
+                quiz_num = random.nextInt(setquiz.size());
+            }
+            else if(quiz_cat == 2){
+                setquiz = oxquiz.getoxB();
+                quiz_num = random.nextInt(setquiz.size());
+            }
+            /*
+            else if(quiz_cat == 3){
+                setquiz = oxquiz.getoxC();
+                quiz_num = random.nextInt(setquiz.size());
+            }
+            else if(quiz_cat == 4){
+                setquiz = oxquiz.getoxD();
+                quiz_num = random.nextInt(setquiz.size());
+            }
+            else if(quiz_cat == 5){
+                setquiz = oxquiz.getoxE();
+                quiz_num = random.nextInt(setquiz.size());
+            }
+            else if(quiz_cat == 6){
+                setquiz = oxquiz.getoxF();
+                quiz_num = random.nextInt(setquiz.size());
+            }
+             */
+            textView.setText(setquiz.get(quiz_num).get(2));
+
+            answer = setquiz.get(quiz_num).get(3);
+
         }
 
     }
@@ -136,7 +178,16 @@ public class LockScreenActivity extends Activity {
 
 
         public boolean onDrag(View v, DragEvent event) {
-
+            int answerID;
+            int worngID;
+            if(answer == "O"){
+                answerID = R.id.o;
+                worngID = R.id.x;
+            }
+            else{
+                answerID = R.id.x;
+                worngID = R.id.o;
+            }
 
 
             // 이벤트 시작
@@ -169,7 +220,7 @@ public class LockScreenActivity extends Activity {
                 case DragEvent.ACTION_DROP:
                     Log.d("DragClickListener", "ACTION_DROP");
 
-                    if (v == findViewById(R.id.o)) {
+                    if (v == findViewById(worngID)) {
                         View view = (View) event.getLocalState();
                         ViewGroup viewgroup = (ViewGroup) view.getParent();
                         viewgroup.removeView(view);
@@ -182,7 +233,7 @@ public class LockScreenActivity extends Activity {
 
                         finish();
 
-                    }else if (v == findViewById(R.id.x)) {
+                    }else if (v == findViewById(answerID)) {
                         View view = (View) event.getLocalState();
                         ViewGroup viewgroup = (ViewGroup) view.getParent();
                         viewgroup.removeView(view);
@@ -200,8 +251,6 @@ public class LockScreenActivity extends Activity {
                         ViewGroup viewgroup = (ViewGroup) view.getParent();
                         viewgroup.removeView(view);
 
-                        sendNotification("다시 드래그하세요.");
-
                         ConstraintLayout containView = (ConstraintLayout) findViewById(R.id.base);
                         containView.addView(view);
                         view.setVisibility(View.VISIBLE);
@@ -210,8 +259,6 @@ public class LockScreenActivity extends Activity {
                         View view = (View) event.getLocalState();
                         view.setVisibility(View.VISIBLE);
                         Context context = getApplicationContext();
-
-                        sendNotification("다시 드래그하셔야 합니다.");
 
                         ConstraintLayout containView = (ConstraintLayout) v;
                         containView.addView(view);
