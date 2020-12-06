@@ -14,4 +14,15 @@ public class odapNote {
     public List<List<String>> getOdapB(){
         return odapB;
     }
+
+    public List<String> getOdap(int i){
+        List<String> odap=odapB.get(i);
+        return odap;
+    }
+
+    public void cleaner(){
+        odapB.clear();
+    }
+
+
 }

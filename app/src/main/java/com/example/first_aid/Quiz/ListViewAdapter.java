@@ -1,12 +1,15 @@
 package com.example.first_aid.Quiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.first_aid.R;
 
@@ -16,6 +19,7 @@ public class ListViewAdapter extends BaseAdapter {
     private TextView category;
     private TextView number;
     private TextView content;
+
 
     private ArrayList<ListViewItem> listViewItemList=new ArrayList<ListViewItem>();
 
@@ -46,6 +50,8 @@ public class ListViewAdapter extends BaseAdapter {
         category.setText(listViewItem.getCategoryS());
         number.setText(listViewItem.getNumS());
         content.setText(listViewItem.getContentS());
+
+
 
         return convertView;
     }

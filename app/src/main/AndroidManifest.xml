@@ -52,6 +52,7 @@
         <activity android:name=".Quiz.QuizA" />
         <activity android:name=".Quiz.QuizB" />
         <activity android:name=".Quiz.ComB" />
+        <activity android:name=".Quiz.CommentB" />
     </application>
 
 </manifest>
