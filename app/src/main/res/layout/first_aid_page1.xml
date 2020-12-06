@@ -10,71 +10,128 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="성인 심폐소생술"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/adultcprImageButton"
+        app:layout_constraintHorizontal_bias="0.573"
+        app:layout_constraintStart_toStartOf="@+id/adultcprImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/adultcprImageButton" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="소아 심폐소생술"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
+        app:layout_constraintEnd_toEndOf="@+id/childcprImageButton"
+        app:layout_constraintStart_toStartOf="@+id/childcprImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/childcprImageButton" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="자동 심장충격기"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintEnd_toEndOf="@+id/aedImageButton"
+        app:layout_constraintStart_toStartOf="@+id/aedImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/aedImageButton" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="성인 및 소아 기도 폐쇄"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintEnd_toEndOf="@+id/ROImageButton"
+        app:layout_constraintStart_toStartOf="@+id/ROImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/ROImageButton" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="영아 기도 폐쇄"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintEnd_toEndOf="@+id/infantROImageButton"
+        app:layout_constraintStart_toStartOf="@+id/infantROImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/infantROImageButton" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="드레싱 및 붕대 이용법"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintEnd_toEndOf="@+id/bandageImageButton"
+        app:layout_constraintStart_toStartOf="@+id/bandageImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/bandageImageButton" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="환자를 옮기는 법"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageButton
+        android:id="@+id/adultcprImageButton"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/adult_cpr" />
+
+    <ImageButton
+        android:id="@+id/childcprImageButton"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/child_cpr" />
+
+    <ImageButton
+        android:id="@+id/aedImageButton"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/adultcprImageButton"
+        app:layout_constraintStart_toStartOf="@+id/adultcprImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/button1"
+        app:srcCompat="@drawable/aed" />
+
+    <ImageButton
+        android:id="@+id/ROImageButton"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/childcprImageButton"
+        app:layout_constraintStart_toStartOf="@+id/childcprImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:srcCompat="@drawable/respiratory_obstruction" />
+
+    <ImageButton
+        android:id="@+id/infantROImageButton"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/aedImageButton"
+        app:layout_constraintStart_toStartOf="@+id/aedImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:srcCompat="@drawable/infant_respiratory_obstruction" />
+
+    <ImageButton
+        android:id="@+id/bandageImageButton"
+        android:layout_width="180dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/ROImageButton"
+        app:layout_constraintStart_toStartOf="@+id/ROImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:srcCompat="@drawable/bandage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.First_Aid">
-        <activity android:name=".FirstAid.FirstAidPage1_1"></activity>
+        <activity android:name=".FirstAid.FirstAidPage1_2"></activity>
+        <activity android:name=".FirstAid.FirstAidPage1_1" />
         <activity android:name=".FirstAid.FirstAidPage1" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -47,10 +48,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <activity android:name=".Quiz.QuizA"></activity>
-        <activity android:name=".Quiz.QuizB"></activity>
-        <activity android:name=".Quiz.ComB"></activity>
 
+        <activity android:name=".Quiz.QuizA" />
+        <activity android:name=".Quiz.QuizB" />
+        <activity android:name=".Quiz.ComB" />
     </application>
 
 </manifest>
