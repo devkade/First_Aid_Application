@@ -33,7 +33,9 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public MainNewsTabAdapter(String[] myDataset) {
-        mDataset = myDataset;
+        for(int i = 0; i < 17; i++){
+            mDataset = myDataset;
+        }
     }
 
     // Create new views (invoked by the layout manager)
@@ -50,18 +52,20 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset[position]);
-        holder.mCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String currentValue = mDataset[position];
-                String url = mDataset[position + 17];
-                Log.d("CardView", "CardView Clicked: " + currentValue);
-                Intent myIntent;
-                myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                view.getContext().startActivity(myIntent);
-            }
-        });
+        for(int i = 0; i < 17; i++) {
+            holder.mTextView.setText(mDataset[position]);
+            holder.mCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String currentValue = mDataset[position];
+                    String url = mDataset[position + 17];
+                    Log.d("CardView", "CardView Clicked: " + currentValue);
+                    Intent myIntent;
+                    myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    view.getContext().startActivity(myIntent);
+                }
+            });
+        }
     }
 
     @Override

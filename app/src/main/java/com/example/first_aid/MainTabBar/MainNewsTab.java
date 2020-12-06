@@ -140,6 +140,7 @@ public class MainNewsTab extends Fragment {
 
                             news = document.getString("NewsName");
                             url = document.getString("NewsUrl");
+
                             news_name[i] = news;
                             news_name[i + 17] = url;
                             i++;
