@@ -25,7 +25,7 @@ public class MainHealthTabAdapter extends RecyclerView.Adapter<MainHealthTabAdap
             super(v);
 
             mCardView = (CardView) v.findViewById(R.id.card_view);
-            mTextView = (TextView) v.findViewById(R.id.tv_text);
+            mTextView = (TextView) v.findViewById(R.id.tv_textContent);
         }
     }
 
@@ -37,17 +37,17 @@ public class MainHealthTabAdapter extends RecyclerView.Adapter<MainHealthTabAdap
     // Create new views (invoked by the layout manager)
     @Override
     public MainHealthTabAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                int viewType) {
+                                                              int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        MyViewHolder vh = new MyViewHolder(v);
+        MainHealthTabAdapter.MyViewHolder vh = new MainHealthTabAdapter.MyViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(MainHealthTabAdapter.MyViewHolder holder, final int position) {
         holder.mTextView.setText(mDataset[position]);
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override

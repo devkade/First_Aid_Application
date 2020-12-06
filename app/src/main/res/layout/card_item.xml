@@ -21,25 +21,25 @@
             android:orientation="vertical"
             android:background="@drawable/round_edge">
 
-            <ImageView
+            <com.facebook.drawee.view.DraweeView
                 android:id="@+id/iv_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/abc_btn_radio_material"></ImageView>
+                android:src="@drawable/abc_btn_radio_material"></com.facebook.drawee.view.DraweeView>
 
             <TextView
-                android:id="@+id/tv_text"
+                android:id="@+id/tv_textTitle"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"></TextView>
 
             <TextView
-                android:id="@+id/tv_blah"
+                android:id="@+id/tv_textContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="blah blah blah......"></TextView>
+                android:gravity="center"></TextView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
