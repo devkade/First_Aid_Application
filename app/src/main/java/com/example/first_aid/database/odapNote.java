@@ -5,7 +5,7 @@ import java.util.List;
 
 public class odapNote {
 
-    public List<List<String>> odapB=new ArrayList<List<String>>();
+    public static List<List<String>> odapB=new ArrayList<List<String>>();
 
     public void setOdapB(List<String> list){
         odapB.add(list);
