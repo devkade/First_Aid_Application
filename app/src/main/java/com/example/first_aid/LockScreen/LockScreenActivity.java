@@ -1,7 +1,6 @@
 package com.example.first_aid.LockScreen;
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -13,10 +12,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.PowerManager;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.example.first_aid.MainActivity;
 import com.example.first_aid.R;
@@ -32,10 +29,15 @@ import android.view.View.OnDragListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.first_aid.database.oxquiz;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -44,6 +46,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static android.content.ContentValues.TAG;
+
 
 public class LockScreenActivity extends Activity {
     private ImageView mImg;
@@ -51,6 +55,9 @@ public class LockScreenActivity extends Activity {
     private Intent serviceIntent;
     private int layout;
     private String answer;
+    private String content = "News1";
+    private String news;
+    private String url;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -146,6 +153,80 @@ public class LockScreenActivity extends Activity {
             answer = setquiz.get(quiz_num).get(3);
 
         }
+        else if(layout == R.layout.activity_lock_screen_2){
+
+            mImg = (ImageView) findViewById(R.id.unlock_btn);
+            mImg.setTag(IMAGEVIEW_TAG);
+
+            mImg.setOnLongClickListener(new LongClickListener());
+
+            findViewById(R.id.news_url).setOnDragListener(new DragListener());
+            findViewById(R.id.unlock).setOnDragListener(new DragListener());
+            findViewById(R.id.nothing).setOnDragListener(new DragListener());
+
+            int news_num = random.nextInt(17) + 1;
+
+            if(news_num == 1)
+                content = "News1";
+            else if(news_num == 2)
+                content = "News2";
+            else if(news_num == 3)
+                content = "News3";
+            else if(news_num == 4)
+                content = "News4";
+            else if(news_num == 5)
+                content = "News5";
+            else if(news_num == 6)
+                content = "News6";
+            else if(news_num == 7)
+                content = "News7";
+            else if(news_num == 8)
+                content = "News8";
+            else if(news_num == 9)
+                content = "News9";
+            else if(news_num == 10)
+                content = "News10";
+            else if(news_num == 11)
+                content = "News11";
+            else if(news_num == 12)
+                content = "News12";
+            else if(news_num == 13)
+                content = "News13";
+            else if(news_num == 14)
+                content = "News14";
+            else if(news_num == 15)
+                content = "News15";
+            else if(news_num == 16)
+                content = "News16";
+            else if(news_num == 17)
+                content = "News17";
+
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("DesignThinking").document(content);
+
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getString("NewsName"));
+                            TextView textView = (TextView) findViewById(R.id.locknews);
+
+                            news = document.getString("NewsName");
+                            url = document.getString("NewsUrl");
+                            textView.setText(news);
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+
+        }
 
     }
 
@@ -178,101 +259,192 @@ public class LockScreenActivity extends Activity {
 
 
         public boolean onDrag(View v, DragEvent event) {
-            int answerID;
-            int worngID;
-            if(answer == "O"){
-                answerID = R.id.o;
-                worngID = R.id.x;
-            }
-            else{
-                answerID = R.id.x;
-                worngID = R.id.o;
-            }
+
+            if (layout == R.layout.activity_lock_screen) {
+                int answerID;
+                int worngID;
+                if (answer == "O") {
+                    answerID = R.id.o;
+                    worngID = R.id.x;
+                } else {
+                    answerID = R.id.x;
+                    worngID = R.id.o;
+                }
 
 
-            // 이벤트 시작
-            switch (event.getAction()) {
+                // 이벤트 시작
+                switch (event.getAction()) {
 
-                // 이미지를 드래그 시작될때
-                case DragEvent.ACTION_DRAG_STARTED:
-                    Log.d("DragClickListener", "ACTION_DRAG_STARTED");
-                    break;
-
-                // 드래그한 이미지를 옮길려는 지역으로 들어왔을때
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    Log.d("DragClickListener", "ACTION_DRAG_ENTERED");
-                    // 이미지가 들어왔다는 것을 알려주기 위해 배경이미지 변경
-                    if(v != findViewById(R.id.nothing)){
-                        v.setBackground(targetShape);
-                    }
-                    break;
-
-                // 드래그한 이미지가 영역을 빠져 나갈때
-                case DragEvent.ACTION_DRAG_EXITED:
-                    Log.d("DragClickListener", "ACTION_DRAG_EXITED");
-
-                    if(v != findViewById(R.id.nothing)){
-                        v.setBackground(normalShape);
-                    }
-                    break;
-
-                // 이미지를 드래그해서 드랍시켰을때
-                case DragEvent.ACTION_DROP:
-                    Log.d("DragClickListener", "ACTION_DROP");
-
-                    if (v == findViewById(worngID)) {
-                        View view = (View) event.getLocalState();
-                        ViewGroup viewgroup = (ViewGroup) view.getParent();
-                        viewgroup.removeView(view);
-
-                        sendNotification("오답입니다.");
-
-                        ConstraintLayout containView = (ConstraintLayout) v;
-                        containView.addView(view);
-                        view.setVisibility(View.VISIBLE);
-
-                        finish();
-
-                    }else if (v == findViewById(answerID)) {
-                        View view = (View) event.getLocalState();
-                        ViewGroup viewgroup = (ViewGroup) view.getParent();
-                        viewgroup.removeView(view);
-
-                        sendNotification("정답입니다.");
-
-                        ConstraintLayout containView = (ConstraintLayout) v;
-                        containView.addView(view);
-                        view.setVisibility(View.VISIBLE);
-
-                        finish();
-
-                    }else if (v == findViewById(R.id.nothing) | v == findViewById(R.id.o) | v == findViewById(R.id.x)) {
-                        View view = (View) event.getLocalState();
-                        ViewGroup viewgroup = (ViewGroup) view.getParent();
-                        viewgroup.removeView(view);
-
-                        ConstraintLayout containView = (ConstraintLayout) findViewById(R.id.base);
-                        containView.addView(view);
-                        view.setVisibility(View.VISIBLE);
-
-                    }else {
-                        View view = (View) event.getLocalState();
-                        view.setVisibility(View.VISIBLE);
-                        Context context = getApplicationContext();
-
-                        ConstraintLayout containView = (ConstraintLayout) v;
-                        containView.addView(view);
+                    // 이미지를 드래그 시작될때
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        Log.d("DragClickListener", "ACTION_DRAG_STARTED");
                         break;
-                    }
-                    break;
 
-                case DragEvent.ACTION_DRAG_ENDED:
-                    Log.d("DragClickListener", "ACTION_DRAG_ENDED");
-                    if(v != findViewById(R.id.nothing)) {
-                        v.setBackground(normalShape); // go back to normal shape
-                    }
-                default:
-                    break;
+                    // 드래그한 이미지를 옮길려는 지역으로 들어왔을때
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        Log.d("DragClickListener", "ACTION_DRAG_ENTERED");
+                        // 이미지가 들어왔다는 것을 알려주기 위해 배경이미지 변경
+                        if (v != findViewById(R.id.nothing)) {
+                            v.setBackground(targetShape);
+                        }
+                        break;
+
+                    // 드래그한 이미지가 영역을 빠져 나갈때
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        Log.d("DragClickListener", "ACTION_DRAG_EXITED");
+
+                        if (v != findViewById(R.id.nothing)) {
+                            v.setBackground(normalShape);
+                        }
+                        break;
+
+                    // 이미지를 드래그해서 드랍시켰을때
+                    case DragEvent.ACTION_DROP:
+                        Log.d("DragClickListener", "ACTION_DROP");
+
+                        if (v == findViewById(worngID)) {
+                            View view = (View) event.getLocalState();
+                            ViewGroup viewgroup = (ViewGroup) view.getParent();
+                            viewgroup.removeView(view);
+
+                            sendNotification("오답입니다.");
+
+                            ConstraintLayout containView = (ConstraintLayout) v;
+                            containView.addView(view);
+                            view.setVisibility(View.VISIBLE);
+
+                            finish();
+
+                        } else if (v == findViewById(answerID)) {
+                            View view = (View) event.getLocalState();
+                            ViewGroup viewgroup = (ViewGroup) view.getParent();
+                            viewgroup.removeView(view);
+
+                            sendNotification("정답입니다.");
+
+                            ConstraintLayout containView = (ConstraintLayout) v;
+                            containView.addView(view);
+                            view.setVisibility(View.VISIBLE);
+
+                            finish();
+
+                        } else if (v == findViewById(R.id.nothing) | v == findViewById(R.id.o) | v == findViewById(R.id.x)) {
+                            View view = (View) event.getLocalState();
+                            ViewGroup viewgroup = (ViewGroup) view.getParent();
+                            viewgroup.removeView(view);
+
+                            ConstraintLayout containView = (ConstraintLayout) findViewById(R.id.base);
+                            containView.addView(view);
+                            view.setVisibility(View.VISIBLE);
+
+                        } else {
+                            View view = (View) event.getLocalState();
+                            view.setVisibility(View.VISIBLE);
+                            Context context = getApplicationContext();
+
+                            ConstraintLayout containView = (ConstraintLayout) v;
+                            containView.addView(view);
+                            break;
+                        }
+                        break;
+
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        Log.d("DragClickListener", "ACTION_DRAG_ENDED");
+                        if (v != findViewById(R.id.nothing)) {
+                            v.setBackground(normalShape); // go back to normal shape
+                        }
+                    default:
+                        break;
+                }
+                return true;
+            }
+            else if(layout == R.layout.activity_lock_screen_2){
+                switch (event.getAction()) {
+
+                    // 이미지를 드래그 시작될때
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        Log.d("DragClickListener", "ACTION_DRAG_STARTED");
+                        break;
+
+                    // 드래그한 이미지를 옮길려는 지역으로 들어왔을때
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        Log.d("DragClickListener", "ACTION_DRAG_ENTERED");
+                        // 이미지가 들어왔다는 것을 알려주기 위해 배경이미지 변경
+                        if (v != findViewById(R.id.nothing)) {
+                            v.setBackground(targetShape);
+                        }
+                        break;
+
+                    // 드래그한 이미지가 영역을 빠져 나갈때
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        Log.d("DragClickListener", "ACTION_DRAG_EXITED");
+
+                        if (v != findViewById(R.id.nothing)) {
+                            v.setBackground(normalShape);
+                        }
+                        break;
+
+                    // 이미지를 드래그해서 드랍시켰을때
+                    case DragEvent.ACTION_DROP:
+                        Log.d("DragClickListener", "ACTION_DROP");
+
+                        if (v == findViewById(R.id.news_url)) {
+                            View view = (View) event.getLocalState();
+                            ViewGroup viewgroup = (ViewGroup) view.getParent();
+                            viewgroup.removeView(view);
+
+                            ConstraintLayout containView = (ConstraintLayout) v;
+                            containView.addView(view);
+                            view.setVisibility(View.VISIBLE);
+
+                            Intent myIntent;
+                            myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+                            startActivity(myIntent);
+
+                            finish();
+
+                        } else if (v == findViewById(R.id.unlock)) {
+                            View view = (View) event.getLocalState();
+                            ViewGroup viewgroup = (ViewGroup) view.getParent();
+                            viewgroup.removeView(view);
+
+
+                            ConstraintLayout containView = (ConstraintLayout) v;
+                            containView.addView(view);
+                            view.setVisibility(View.VISIBLE);
+
+                            finish();
+
+                        } else if (v == findViewById(R.id.nothing) | v == findViewById(R.id.o) | v == findViewById(R.id.x)) {
+                            View view = (View) event.getLocalState();
+                            ViewGroup viewgroup = (ViewGroup) view.getParent();
+                            viewgroup.removeView(view);
+
+                            ConstraintLayout containView = (ConstraintLayout) findViewById(R.id.base);
+                            containView.addView(view);
+                            view.setVisibility(View.VISIBLE);
+
+                        } else {
+                            View view = (View) event.getLocalState();
+                            view.setVisibility(View.VISIBLE);
+                            Context context = getApplicationContext();
+
+                            ConstraintLayout containView = (ConstraintLayout) v;
+                            containView.addView(view);
+                            break;
+                        }
+                        break;
+
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        Log.d("DragClickListener", "ACTION_DRAG_ENDED");
+                        if (v != findViewById(R.id.nothing)) {
+                            v.setBackground(normalShape); // go back to normal shape
+                        }
+                    default:
+                        break;
+                }
+                return true;
             }
             return true;
         }
