@@ -14,31 +14,18 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.first_aid.BottomNavigationBarFragment.FragmentContents;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentMain;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentQuiz;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentSetting;
-import com.example.first_aid.MainTabBar.MainNewsTab;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.first_aid.FirstAid.FirstAidPage1_1;
+import com.example.first_aid.MainTabBar.MainFirstAidTab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import com.example.first_aid.LockScreen.AlarmReceiver;
 import com.example.first_aid.LockScreen.RealService;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     FragmentContents fragmentContents;
     FragmentQuiz fragmentQuiz;
     FragmentSetting fragmentSetting;
+    MainFirstAidTab mainFirstAidTab;
+    FirstAidPage1_1 firstAidPage1_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     @Override
     protected void onDestroy() {

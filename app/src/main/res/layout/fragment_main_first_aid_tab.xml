@@ -4,24 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/MainFirstAidTabLayout">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/viga"
         android:gravity="center_horizontal"
-        android:text="Todays\n응급처치방법"
+        android:text="Today's\n응급처치방법"
         android:textSize="36sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cpr_title"
+        android:gravity="center_horizontal"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/todayFirstAidContentButton"
         android:layout_width="match_parent"
         android:layout_height="341dp"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="40dp"
-        app:srcCompat="@drawable/ic_contents" />
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/cpr_4" />
 </LinearLayout>
