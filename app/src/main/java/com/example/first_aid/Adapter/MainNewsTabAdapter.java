@@ -33,9 +33,7 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public MainNewsTabAdapter(String[] myDataset) {
-        for(int i = 0; i < 17; i++){
-            mDataset = myDataset;
-        }
+        mDataset = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
@@ -52,7 +50,7 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        for(int i = 0; i < 17; i++) {
+        if(position < 17) {
             holder.mTextView.setText(mDataset[position]);
             holder.mCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
