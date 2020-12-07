@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.first_aid.Adapter.MainHealthTabAdapter;
 import com.example.first_aid.Adapter.MainNewsTabAdapter;
 import com.example.first_aid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -63,7 +64,7 @@ public class MainHealthTab extends Fragment {
 
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
         rv.setHasFixedSize(true);
-        MainNewsTabAdapter adapter = new MainNewsTabAdapter(new String[]{"test one", "test two", "test three", "test four", "test five" , "test six" , "test seven"});
+        MainHealthTabAdapter adapter = new MainHealthTabAdapter(new String[]{"test one", "test two", "test three", "test four", "test five" , "test six" , "test seven"});
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

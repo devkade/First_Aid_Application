@@ -81,7 +81,8 @@ public class MainNewsTab extends Fragment {
 
         String[] news_name = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
                 "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
-                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"};
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
+                "News1", "News2", "News3", "News4", "News5", "News6", "News7", "News8", "News9", "News10", "News11", "News12", "News13", "News14", "News15", "News16", "News17",};
 
 
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
