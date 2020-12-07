@@ -38,6 +38,10 @@ public class ComB extends AppCompatActivity {
             adapter.addItem(odapB.get(i).get(0), odapB.get(i).get(1), odapB.get(i).get(2));
         }
 
+        odapNote odapnote=new odapNote();
+        odapnote.setOdapAll();
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

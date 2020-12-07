@@ -54,8 +54,8 @@ public class FragmentQuiz extends Fragment {
             @Override
             public void onClick(View v)
             {
-                odapNote odapnote=new odapNote();
-                odapnote.setOdapAll();
+                odapNote odapB=new odapNote();
+                odapB.Bcleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizO.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
@@ -78,7 +78,7 @@ public class FragmentQuiz extends Fragment {
             public void onClick(View v)
             {
                 odapNote odapB=new odapNote();
-                odapB.cleaner();
+                odapB.Bcleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizB.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);

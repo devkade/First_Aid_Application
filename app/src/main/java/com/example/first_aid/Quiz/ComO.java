@@ -37,6 +37,9 @@ public class ComO extends AppCompatActivity {
             adapter.addItem(odapAll.get(i).get(0), odapAll.get(i).get(1), odapAll.get(i).get(2));
         }
 
+        odapNote odapnote=new odapNote();
+        odapnote.setOdapAll();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
