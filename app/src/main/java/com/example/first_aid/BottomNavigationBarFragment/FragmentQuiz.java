@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.first_aid.Quiz.NcomlistB;
 import com.example.first_aid.Quiz.QuizA;
 import com.example.first_aid.Quiz.QuizB;
 import com.example.first_aid.Quiz.QuizC;
 import com.example.first_aid.Quiz.QuizD;
 import com.example.first_aid.Quiz.QuizE;
 import com.example.first_aid.Quiz.QuizF;
+import com.example.first_aid.Quiz.QuizO;
 import com.example.first_aid.R;
 import com.example.first_aid.database.odapNote;
 
@@ -47,6 +49,19 @@ public class FragmentQuiz extends Fragment {
         Button F1 = (Button) view.findViewById(R.id.F1);
         Button F2 = (Button) view.findViewById(R.id.F2);
 
+        O1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                odapNote odapnote=new odapNote();
+                odapnote.setOdapAll();
+                Intent intent=new Intent(getActivity().getApplicationContext(), QuizO.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+
         A1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -65,6 +80,17 @@ public class FragmentQuiz extends Fragment {
                 odapNote odapB=new odapNote();
                 odapB.cleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizB.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+
+        B2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getActivity().getApplicationContext(), NcomlistB.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
