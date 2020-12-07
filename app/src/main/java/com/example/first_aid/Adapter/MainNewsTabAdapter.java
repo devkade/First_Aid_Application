@@ -23,11 +23,13 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
         public TextView mTextView;
+        public TextView mReporter;
         public MyViewHolder(View v) {
             super(v);
 
             mCardView = (CardView) v.findViewById(R.id.card_view);
             mTextView = (TextView) v.findViewById(R.id.tv_text);
+            mReporter = (TextView) v.findViewById(R.id.tv_blah);
         }
     }
 
@@ -52,6 +54,7 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         if(position < 17) {
             holder.mTextView.setText(mDataset[position]);
+            holder.mReporter.setText(mDataset[position + 34]);
             holder.mCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
