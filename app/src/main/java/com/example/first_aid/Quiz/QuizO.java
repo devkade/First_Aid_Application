@@ -20,17 +20,22 @@ public class QuizO extends AppCompatActivity {
     public odapNote odapnote=new odapNote();
     private List<String> AllOdap=odapnote.getOdapAll();
     private int size=odapnote.getSize();
-    private List<Integer> Correct=new ArrayList<Integer>();
+    private static int previousSize;
+    private static int[] Correct=new int[20];
+    private static int ccount;
     private static int count;
     Button O, X;
 
     protected void onCreate(Bundle savedInstanceState) {
+        if(count==size || size!=previousSize){
+            count=0;
+            ccount=0;
+        }
+
+        previousSize=size;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_ox_layout);
 
-        if(count==AllOdap.size()){
-            count=0;
-        }
         try {
             TextView textView1 = (TextView) findViewById(R.id.quiz_category);
             textView1.setText(AllOdap.get(0));
@@ -49,7 +54,8 @@ public class QuizO extends AppCompatActivity {
             public void onClick(View v) {
                 if (AllOdap.get(3) == "O") {
                     Toast.makeText(QuizO.this, "정답입니다!", Toast.LENGTH_SHORT).show();
-                    Correct.add(count);
+                    Correct[ccount]=count;
+                    ccount++;
                 } else {
                     Toast.makeText(QuizO.this, "틀렸습니다. 답 : X", Toast.LENGTH_SHORT).show();
                 }
@@ -60,8 +66,8 @@ public class QuizO extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    for(int i=0; i<Correct.size(); i++){
-                        odapnote.remover(Correct.get(i));
+                    for(int i=ccount-1; i>-1; i--){
+                        odapnote.remover(Correct[i]);
                     }
                     Intent intent = new Intent(getApplicationContext(), ComO.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -76,20 +82,21 @@ public class QuizO extends AppCompatActivity {
             public void onClick(View v) {
                 if (AllOdap.get(3) == "X") {
                     Toast.makeText(QuizO.this, "정답입니다!", Toast.LENGTH_SHORT).show();
-                    Correct.add(count);
+                    Correct[ccount]=count;
+                    ccount++;
                 } else {
                     Toast.makeText(QuizO.this, "틀렸습니다. 답 : O", Toast.LENGTH_SHORT).show();
                 }
                 count++;
                 if(count<size) {
-                    for(int i=0; i<Correct.size(); i++){
-                        odapnote.remover(Correct.get(i));
-                    }
                     Intent intent = new Intent(getApplicationContext(), QuizO.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }
                 else{
+                    for(int i=ccount-1; i>-1; i--){
+                        odapnote.remover(Correct[i]);
+                    }
                     Intent intent = new Intent(getApplicationContext(), ComO.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);

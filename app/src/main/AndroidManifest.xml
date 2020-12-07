@@ -58,6 +58,9 @@
         <activity android:name=".Quiz.NcommentB" />
         <activity android:name=".Quiz.QuizO" />
         <activity android:name=".Quiz.ComO" />
+        <activity android:name=".Quiz.CommentO" />
+        <activity android:name=".Quiz.NcomlistO" />
+        <activity android:name=".Quiz.NcommentO" />
     </application>
 
 </manifest>

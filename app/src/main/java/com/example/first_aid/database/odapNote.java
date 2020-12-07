@@ -22,7 +22,7 @@ public class odapNote {
         return odap;
     }
 
-    public void cleaner(){
+    public void Bcleaner(){
         odapB.clear();
     }
 
@@ -38,8 +38,19 @@ public class odapNote {
     }
 
     public List<String> getOdapAll(){
-        List<String> odap=odapAll.get(count);
-        count++;
+        if(odapAll.size()>0){
+            List<String> odap=odapAll.get(count);
+            count++;
+            return odap;
+        }
+        else{
+            List<String> odap=new ArrayList<String>();
+            return odap;
+        }
+    }
+
+    public List<String> getOdapAlllist(int i){
+        List<String> odap=odapAll.get(i);
         return odap;
     }
 
