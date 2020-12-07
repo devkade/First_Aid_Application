@@ -1,6 +1,7 @@
 package com.example.first_aid.FirstAid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 

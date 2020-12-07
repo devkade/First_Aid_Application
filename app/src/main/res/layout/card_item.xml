@@ -18,18 +18,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/round_edge">
 
-            <ImageView
+            <com.facebook.drawee.view.DraweeView
                 android:id="@+id/iv_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:src="@drawable/abc_btn_radio_material"></ImageView>
+                android:src="@drawable/abc_btn_radio_material"></com.facebook.drawee.view.DraweeView>
 
             <TextView
                 android:id="@+id/tv_text"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center|left"></TextView>
@@ -38,7 +39,7 @@
                 android:id="@+id/tv_blah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="blah blah blah......"></TextView>
+                android:gravity="center"></TextView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

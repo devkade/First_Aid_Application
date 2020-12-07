@@ -42,10 +42,10 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
             super(v);
 
             mCardView = (CardView) v.findViewById(R.id.card_view);
+
             mTextView = (TextView) v.findViewById(R.id.tv_text);
             mReporter = (TextView) v.findViewById(R.id.tv_blah);
             mImageView = (ImageView) v.findViewById(R.id.iv_image);
-
         }
     }
 
