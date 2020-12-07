@@ -43,7 +43,7 @@ public class ComO extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ComO.this, CommentB.class);
+                Intent intent = new Intent(ComO.this, CommentO.class);
                 intent.putExtra("indexs", index[position]);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);

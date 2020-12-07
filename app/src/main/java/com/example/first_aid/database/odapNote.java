@@ -49,6 +49,11 @@ public class odapNote {
         }
     }
 
+    public List<String> getOdapAlllist(int i){
+        List<String> odap=odapAll.get(i);
+        return odap;
+    }
+
     public List<List<String>> getOdapAllA(){return odapAll;}
 
     public int getSize(){return odapAll.size();}
