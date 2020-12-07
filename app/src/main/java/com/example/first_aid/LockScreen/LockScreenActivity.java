@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.view.WindowManager;
 
+import com.bumptech.glide.Glide;
 import com.example.first_aid.MainActivity;
 import com.example.first_aid.R;
 
@@ -32,10 +33,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.first_aid.database.oxquiz;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -217,6 +222,7 @@ public class LockScreenActivity extends Activity {
                             TextView textView = (TextView) findViewById(R.id.locknews_title);
                             TextView textView2 = (TextView) findViewById(R.id.locknews_content);
                             TextView textView3 = (TextView) findViewById(R.id.locknews_reporter);
+                            ImageView imageView = (ImageView) findViewById(R.id.news_img);
 
                             news = document.getString("NewsName");
                             url = document.getString("NewsUrl");
@@ -225,6 +231,26 @@ public class LockScreenActivity extends Activity {
                             textView.setText(news);
                             textView2.setText(newscontent);
                             textView3.setText(reporter + " 기자");
+
+                            FirebaseStorage storage = FirebaseStorage.getInstance("gs://design-thinking-51c43.appspot.com");
+                            StorageReference storageRef = storage.getReference();
+                            storageRef.child("NewsImage/"+ content +".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    //이미지 로드 성공시
+
+                                    Glide.with(LockScreenActivity.this)
+                                            .load(uri)
+                                            .into(imageView);
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    //이미지 로드 실패시
+                                }
+                            });
+
                         } else {
                             Log.d(TAG, "No such document");
                         }
