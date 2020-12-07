@@ -58,6 +58,8 @@ public class LockScreenActivity extends Activity {
     private String content = "News1";
     private String news;
     private String url;
+    private String newscontent;
+    private String reporter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -212,11 +214,17 @@ public class LockScreenActivity extends Activity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             Log.d(TAG, "DocumentSnapshot data: " + document.getString("NewsName"));
-                            TextView textView = (TextView) findViewById(R.id.locknews);
+                            TextView textView = (TextView) findViewById(R.id.locknews_title);
+                            TextView textView2 = (TextView) findViewById(R.id.locknews_content);
+                            TextView textView3 = (TextView) findViewById(R.id.locknews_reporter);
 
                             news = document.getString("NewsName");
                             url = document.getString("NewsUrl");
+                            newscontent = document.getString("Summary");
+                            reporter = document.getString("Reporter");
                             textView.setText(news);
+                            textView2.setText(newscontent);
+                            textView3.setText(reporter + " 기자");
                         } else {
                             Log.d(TAG, "No such document");
                         }

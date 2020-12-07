@@ -29,14 +29,14 @@
                 android:src="@drawable/abc_btn_radio_material"></com.facebook.drawee.view.DraweeView>
 
             <TextView
-                android:id="@+id/tv_textTitle"
+                android:id="@+id/tv_text"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"></TextView>
+                android:gravity="center|left"></TextView>
 
             <TextView
-                android:id="@+id/tv_textContent"
+                android:id="@+id/tv_blah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"></TextView>

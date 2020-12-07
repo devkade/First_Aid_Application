@@ -35,6 +35,7 @@ public class MainNewsTab extends Fragment {
     String content = null;
     String news;
     String url;
+    String reporter;
     public int news_num;
     int i = 0;
 
@@ -79,6 +80,7 @@ public class MainNewsTab extends Fragment {
 
 
         String[] news_name = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
                 "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"};
 
 
@@ -140,9 +142,11 @@ public class MainNewsTab extends Fragment {
 
                             news = document.getString("NewsName");
                             url = document.getString("NewsUrl");
+                            reporter = document.getString("Reporter");
 
                             news_name[i] = news;
                             news_name[i + 17] = url;
+                            news_name[i + 34] = reporter + " 기자";
                             i++;
                         } else {
                             Log.d(TAG, "No such document");

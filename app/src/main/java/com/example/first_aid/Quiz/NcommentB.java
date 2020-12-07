@@ -10,11 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.first_aid.R;
 import com.example.first_aid.database.odapNote;
+import com.example.first_aid.database.oxquiz;
 
 import java.util.List;
 
-public class CommentB extends AppCompatActivity {
-    odapNote odapnote=new odapNote();
+public class NcommentB extends AppCompatActivity {
+    oxquiz quizB=new oxquiz();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,18 +29,18 @@ public class CommentB extends AppCompatActivity {
 
         Intent intent=getIntent();
         int index=intent.getExtras().getInt("indexs");
-        List<String> odap=odapnote.getOdapBlist(index);
-        textView1.setText(odap.get(0));
-        textView2.setText(odap.get(1));
-        textView3.setText(odap.get(2));
-        textView4.setText("답 : "+odap.get(3));
-        textView5.setText("해설 : "+odap.get(4));
+        List<String> oxquizs=quizB.getoxB().get(index);
+        textView1.setText(oxquizs.get(0));
+        textView2.setText(oxquizs.get(1));
+        textView3.setText(oxquizs.get(2));
+        textView4.setText("답 : "+oxquizs.get(3));
+        textView5.setText("해설 : "+oxquizs.get(4));
 
         Button back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CommentB.this, ComB.class);
+                Intent intent = new Intent(NcommentB.this, NcomlistB.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }

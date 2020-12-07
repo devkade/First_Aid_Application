@@ -21,11 +21,13 @@ public class MainHealthTabAdapter extends RecyclerView.Adapter<MainHealthTabAdap
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public CardView mCardView;
         public TextView mTextView;
+        public TextView mReporter;
         public MyViewHolder(View v) {
             super(v);
 
             mCardView = (CardView) v.findViewById(R.id.card_view);
-            mTextView = (TextView) v.findViewById(R.id.tv_textContent);
+            mTextView = (TextView) v.findViewById(R.id.tv_text);
+            mReporter = (TextView) v.findViewById(R.id.tv_blah);
         }
     }
 
