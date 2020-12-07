@@ -1,5 +1,7 @@
 package com.example.first_aid.Adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.first_aid.R;
 
+import static androidx.core.content.ContextCompat.startActivity;
 
 
 public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.MyViewHolder> {
@@ -30,7 +33,9 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public MainNewsTabAdapter(String[] myDataset) {
-        mDataset = myDataset;
+        for(int i = 0; i < 17; i++){
+            mDataset = myDataset;
+        }
     }
 
     // Create new views (invoked by the layout manager)
@@ -47,14 +52,20 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        holder.mTextView.setText(mDataset[position]);
-        holder.mCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String currentValue = mDataset[position];
-                Log.d("CardView", "CardView Clicked: " + currentValue);
-            }
-        });
+        for(int i = 0; i < 17; i++) {
+            holder.mTextView.setText(mDataset[position]);
+            holder.mCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String currentValue = mDataset[position];
+                    String url = mDataset[position + 17];
+                    Log.d("CardView", "CardView Clicked: " + currentValue);
+                    Intent myIntent;
+                    myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    view.getContext().startActivity(myIntent);
+                }
+            });
+        }
     }
 
     @Override
