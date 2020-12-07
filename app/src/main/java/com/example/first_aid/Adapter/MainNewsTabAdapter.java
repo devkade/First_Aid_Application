@@ -21,11 +21,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.bumptech.glide.Glide;
 
+import static android.content.ContentValues.TAG;
 import static androidx.core.content.ContextCompat.startActivity;
 
 
 public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.MyViewHolder> {
-    private String[] mDataset = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"};
+    private String[] mDataset;
+    private String[] mDataset3 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"};
     private String[] mDataset2;
 
     // Provide a reference to the views for each data item
@@ -50,8 +52,9 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
     // Provide a suitable constructor (depends on the kind of dataset)
     public MainNewsTabAdapter(String[] myDataset) {
         for(int i = 0; i < 17; i++) {
-            mDataset[i] = myDataset[i];
+            mDataset3[i] = myDataset[i];
         }
+        mDataset = mDataset3;
         mDataset2 = myDataset;
     }
 
@@ -70,6 +73,7 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         if(position < 17) {
+            Log.d(TAG, mDataset[position]);
             holder.mTextView.setText(mDataset2[position]);
             holder.mReporter.setText(mDataset2[position + 34]);
             holder.mCardView.setOnClickListener(new View.OnClickListener() {

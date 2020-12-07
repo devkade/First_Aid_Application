@@ -85,14 +85,6 @@ public class MainNewsTab extends Fragment {
                 "News1", "News2", "News3", "News4", "News5", "News6", "News7", "News8", "News9", "News10", "News11", "News12", "News13", "News14", "News15", "News16", "News17",};
 
 
-        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
-        rv.setHasFixedSize(true);
-        MainNewsTabAdapter adapter = new MainNewsTabAdapter(news_name);
-        rv.setAdapter(adapter);
-
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef;
 
@@ -158,6 +150,17 @@ public class MainNewsTab extends Fragment {
                 }
             });
         }
+
+        String[] news_title;
+        news_title = news_name;
+
+        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
+        rv.setHasFixedSize(true);
+        MainNewsTabAdapter adapter = new MainNewsTabAdapter(news_title);
+        rv.setAdapter(adapter);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(llm);
 
 
 
