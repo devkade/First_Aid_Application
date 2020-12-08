@@ -1,4 +1,55 @@
 package com.example.first_aid.Quiz;
 
-public class ComA {
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.first_aid.R;
+import com.example.first_aid.database.odapNote;
+
+import java.util.List;
+
+public class ComA extends AppCompatActivity {
+    private odapNote odapnoteA = new odapNote();
+    private List<List<String>> odapA = odapnoteA.getOdapA();
+    private ListView listView;
+    private ListViewAdapter adapter;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.quiz_comment);
+
+        final int[] index=new int[odapA.size()];
+        for(int i = 0; i< odapA.size(); i++){
+            index[i]=i;
+        }
+
+        adapter=new ListViewAdapter();
+
+        listView=(ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        for(int i = 0; i< odapA.size(); i++){
+            adapter.addItem(odapA.get(i).get(0), odapA.get(i).get(1), odapA.get(i).get(2));
+        }
+
+        odapNote odapnote=new odapNote();
+        odapnote.setOdapAAll();
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ComA.this, CommentA.class);
+                intent.putExtra("indexs", index[position]);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+        adapter.notifyDataSetChanged();
+    }
 }

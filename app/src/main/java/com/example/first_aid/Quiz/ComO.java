@@ -38,7 +38,8 @@ public class ComO extends AppCompatActivity {
         }
 
         odapNote odapnote=new odapNote();
-        odapnote.setOdapAll();
+        odapnote.setOdapAAll();
+        odapnote.setOdapBAll();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
