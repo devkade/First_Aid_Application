@@ -8,14 +8,14 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.first_aid.R;
+import com.example.first_aid.database.oxquiz;
+
 import java.util.List;
 
-import com.example.first_aid.R;
-import com.example.first_aid.database.odapNote;
-
-public class ComB extends AppCompatActivity {
-    private odapNote odapnoteB = new odapNote();
-    private List<List<String>> odapB = odapnoteB.getOdapB();
+public class NcomlistA extends AppCompatActivity {
+    private oxquiz quizA = new oxquiz();
+    private List<List<String>> listA = quizA.getoxA();
     private ListView listView;
     private ListViewAdapter adapter;
 
@@ -23,8 +23,8 @@ public class ComB extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_comment);
 
-        final int[] index=new int[odapB.size()];
-        for(int i=0; i<odapB.size(); i++){
+        final int[] index=new int[listA.size()];
+        for(int i = 0; i< listA.size(); i++){
             index[i]=i;
         }
 
@@ -33,18 +33,14 @@ public class ComB extends AppCompatActivity {
         listView=(ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
 
-        for(int i=0; i<odapB.size(); i++){
-            adapter.addItem(odapB.get(i).get(0), odapB.get(i).get(1), odapB.get(i).get(2));
+        for(int i = 0; i< listA.size(); i++){
+            adapter.addItem(listA.get(i).get(0), listA.get(i).get(1), listA.get(i).get(2));
         }
-
-        odapNote odapnote=new odapNote();
-        odapnote.setOdapBAll();
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ComB.this, CommentB.class);
+                Intent intent = new Intent(NcomlistA.this, NcommentA.class);
                 intent.putExtra("indexs", index[position]);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);

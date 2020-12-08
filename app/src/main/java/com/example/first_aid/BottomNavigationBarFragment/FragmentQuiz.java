@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.first_aid.Quiz.NcomlistA;
 import com.example.first_aid.Quiz.NcomlistB;
 import com.example.first_aid.Quiz.NcomlistO;
 import com.example.first_aid.Quiz.QuizA;
@@ -55,8 +56,9 @@ public class FragmentQuiz extends Fragment {
             @Override
             public void onClick(View v)
             {
-                odapNote odapB=new odapNote();
-                odapB.Bcleaner();
+                odapNote odap=new odapNote();
+                odap.Acleaner();
+                odap.Bcleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizO.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
@@ -79,7 +81,21 @@ public class FragmentQuiz extends Fragment {
             @Override
             public void onClick(View v)
             {
+                odapNote odapA=new odapNote();
+                odapA.Acleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizA.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+
+        A2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getActivity().getApplicationContext(), NcomlistA.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         });

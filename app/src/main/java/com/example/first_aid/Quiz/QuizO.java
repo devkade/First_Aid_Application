@@ -21,7 +21,7 @@ public class QuizO extends AppCompatActivity {
     private List<String> AllOdap=odapnote.getOdapAll();
     private int size=odapnote.getSize();
     private static int previousSize;
-    private static int[] Correct=new int[20];
+    private static int[] Correct=new int[50];
     private static int ccount;
     private static int count;
     Button O, X;

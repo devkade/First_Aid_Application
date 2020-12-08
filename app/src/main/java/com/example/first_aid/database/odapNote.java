@@ -6,20 +6,38 @@ import java.util.List;
 public class odapNote {
 
     public static List<List<String>> odapAll=new ArrayList<List<String>>();
+    public static List<List<String>> odapA=new ArrayList<List<String>>();
     public static List<List<String>> odapB=new ArrayList<List<String>>();
     public static int count=0;
 
+    public void setOdapA(List<String> list){
+        odapA.add(list);
+    }
+
     public void setOdapB(List<String> list){
         odapB.add(list);
+    }
+
+    public List<List<String>> getOdapA(){
+        return odapA;
     }
 
     public List<List<String>> getOdapB(){
         return odapB;
     }
 
+    public List<String> getOdapAlist(int i){
+        List<String> odap=odapA.get(i);
+        return odap;
+    }
+
     public List<String> getOdapBlist(int i){
         List<String> odap=odapB.get(i);
         return odap;
+    }
+
+    public void Acleaner(){
+        odapA.clear();
     }
 
     public void Bcleaner(){
@@ -30,7 +48,14 @@ public class odapNote {
         odapAll.remove(A);
     }
 
-    public void setOdapAll(){
+    public void setOdapAAll(){
+        count=0;
+        for(int i=0; i<odapA.size(); i++){
+            odapAll.add(odapA.get(i));
+        }
+    }
+
+    public void setOdapBAll(){
         count=0;
         for(int i=0; i<odapB.size(); i++){
             odapAll.add(odapB.get(i));
