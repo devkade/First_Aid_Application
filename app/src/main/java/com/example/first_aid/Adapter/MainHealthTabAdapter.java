@@ -1,5 +1,6 @@
 package com.example.first_aid.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -56,49 +57,46 @@ public class MainHealthTabAdapter extends RecyclerView.Adapter<MainHealthTabAdap
     public MainHealthTabAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                               int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_item, parent, false);
+        Context mContext  = parent.getContext();
+        LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.card_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        MyViewHolder vh = new MyViewHolder(v);
+        MainHealthTabAdapter.MyViewHolder vh = new MainHealthTabAdapter.MyViewHolder(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(MainHealthTabAdapter.MyViewHolder holder, final int position) {
-        if(position < 10) {
-            holder.mTextView.setText(mDataset2[position]);
-            holder.mReporter.setText(mDataset2[position + 16]);
-            holder.mCardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String currentValue = mDataset2[position];
-                    String url = mDataset2[position + 8];
-                    Log.d("CardView", "CardView Clicked: " + currentValue);
-                    Intent myIntent;
-                    myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    view.getContext().startActivity(myIntent);
-                }
-            });
+        holder.mTextView.setText(mDataset2[position]);
+        holder.mReporter.setText(mDataset2[position + 16]);
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = mDataset2[position + 8];
+                Intent myIntent;
+                myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                view.getContext().startActivity(myIntent);
+            }
+        });
 
-            FirebaseStorage storage = FirebaseStorage.getInstance("gs://design-thinking-51c43.appspot.com");
-            StorageReference storageRef = storage.getReference();
-            storageRef.child("HealthNewsImage/"+ mDataset2[position + 24] +".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    //이미지 로드 성공시
+        FirebaseStorage storage = FirebaseStorage.getInstance("gs://design-thinking-51c43.appspot.com");
+        StorageReference storageRef = storage.getReference();
+        storageRef.child("HealthNewsImage/"+ mDataset2[position + 24] +".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                //이미지 로드 성공시
 
-                    Glide.with(holder.itemView)
-                            .load(uri)
-                            .into(holder.mImageView);
+                Glide.with(holder.itemView)
+                        .load(uri)
+                        .into(holder.mImageView);
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    //이미지 로드 실패시
-                }
-            });
-        }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                //이미지 로드 실패시
+            }
+        });
     }
 
     @Override

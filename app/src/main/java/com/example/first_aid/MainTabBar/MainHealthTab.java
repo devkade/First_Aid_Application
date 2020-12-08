@@ -33,6 +33,8 @@ public class MainHealthTab extends Fragment {
     String news;
     String url;
     String reporter;
+    String num;
+    String[] s_content = {"News1", "News2", "News3", "News4", "News5", "News6", "News7", "News8"};
     public int news_num;
     int i = 0;
 
@@ -51,29 +53,7 @@ public class MainHealthTab extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_health_tab, container, false);
-        /*
-        //서버에서 뉴스 제목 받아오기 시작
-        String number = "1";
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("DesignThinking").document("News"+ number);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("Text", "한글 성공: " + document.getString("NewsName"));
-                    } else {
-                        Log.d("한글 문서 없음", "No such document");
-                    }
-                } else {
-                    Log.d("한글 실패", "get failed with ", task.getException());
-                }
-            }
-        });
 
-        //끝
-         */
 
 
         String[] news_name = {"1", "2", "3", "4", "5", "6", "7", "8",
@@ -82,53 +62,40 @@ public class MainHealthTab extends Fragment {
                 "News1", "News2", "News3", "News4", "News5", "News6", "News7", "News8"};
 
 
-        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
-        rv.setHasFixedSize(true);
-        MainHealthTabAdapter adapter = new MainHealthTabAdapter(news_name);
-        rv.setAdapter(adapter);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef;
 
-        for(news_num = 1; news_num <= 8; news_num++) {
-            if(news_num == 1)
-                content = "News1";
-            else if(news_num == 2)
-                content = "News2";
-            else if(news_num == 3)
-                content = "News3";
-            else if(news_num == 4)
-                content = "News4";
-            else if(news_num == 5)
-                content = "News5";
-            else if(news_num == 6)
-                content = "News6";
-            else if(news_num == 7)
-                content = "News7";
-            else if(news_num == 8)
-                content = "News8";
-
-
-            docRef = db.collection("HealthNews").document(content);
+        for(int news_num = 1; news_num <= 8; news_num++) {
+            content = s_content[news_num - 1];
+            docRef = db.collection("HealthNews").document(s_content[news_num - 1]);
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            Log.d(TAG, "DocumentSnapshot data: " + document.getString("NewsName"));
+                            if(i <= 7) {
+                                news = document.getString("NewsName");
+                                url = document.getString("NewsUrl");
+                                reporter = document.getString("Reporter");
+                                num = document.getString("number");
 
-                            news = document.getString("NewsName");
-                            url = document.getString("NewsUrl");
-                            reporter = document.getString("Reporter");
+                                news_name[i] = news;
+                                news_name[i + 8] = url;
+                                news_name[i + 16] = reporter + " 기자";
+                                news_name[i + 24] = num;
 
-                            news_name[i] = news;
-                            news_name[i + 8] = url;
-                            news_name[i + 16] = reporter + " 기자";
-                            i++;
+                                Log.d(TAG, "DocumentSnapshot data: " + news);
+                                Log.d(TAG, "DocumentSnapshot data: " + url);
+                                Log.d(TAG, "DocumentSnapshot data: " + reporter);
+                                Log.d(TAG, "DocumentSnapshot data: " + s_content[i]);
+                                Log.d(TAG, "DocumentSnapshot data: " + content);
+
+                                i++;
+                            }
                         } else {
                             Log.d(TAG, "No such document");
                         }
@@ -139,6 +106,13 @@ public class MainHealthTab extends Fragment {
             });
         }
 
+        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_recycler_view);
+        rv.setHasFixedSize(true);
+        MainHealthTabAdapter adapter = new MainHealthTabAdapter(news_name);
+        rv.setAdapter(adapter);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(llm);
 
 
         return rootView;

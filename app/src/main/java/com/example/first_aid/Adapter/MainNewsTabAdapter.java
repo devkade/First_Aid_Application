@@ -1,5 +1,6 @@
 package com.example.first_aid.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -29,6 +30,7 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
     private String[] mDataset;
     private String[] mDataset3 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"};
     private String[] mDataset2;
+    Context mContext;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -63,8 +65,9 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
     public MainNewsTabAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                               int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_item, parent, false);
+        Context mContext  = parent.getContext();
+        LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.card_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -72,41 +75,36 @@ public class MainNewsTabAdapter extends RecyclerView.Adapter<MainNewsTabAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        if(position < 17) {
-            Log.d(TAG, mDataset[position]);
-            holder.mTextView.setText(mDataset2[position]);
-            holder.mReporter.setText(mDataset2[position + 34]);
-            holder.mCardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String currentValue = mDataset2[position];
-                    String url = mDataset2[position + 17];
-                    Log.d("CardView", "CardView Clicked: " + currentValue);
-                    Intent myIntent;
-                    myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    view.getContext().startActivity(myIntent);
-                }
-            });
+        holder.mTextView.setText(mDataset2[position]);
+        holder.mReporter.setText(mDataset2[position + 34]);
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = mDataset2[position + 17];
+                Intent myIntent;
+                myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                view.getContext().startActivity(myIntent);
+            }
+        });
 
-            FirebaseStorage storage = FirebaseStorage.getInstance("gs://design-thinking-51c43.appspot.com");
-            StorageReference storageRef = storage.getReference();
-            storageRef.child("NewsImage/"+ mDataset2[position + 51] +".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    //이미지 로드 성공시
+        FirebaseStorage storage = FirebaseStorage.getInstance("gs://design-thinking-51c43.appspot.com");
+        StorageReference storageRef = storage.getReference();
+        storageRef.child("NewsImage/"+ mDataset2[position + 51] +".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                //이미지 로드 성공시
 
-                    Glide.with(holder.itemView)
-                            .load(uri)
-                            .into(holder.mImageView);
+                Glide.with(holder.itemView)
+                        .load(uri)
+                        .into(holder.mImageView);
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    //이미지 로드 실패시
-                }
-            });
-        }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                //이미지 로드 실패시
+            }
+        });
     }
 
     @Override
