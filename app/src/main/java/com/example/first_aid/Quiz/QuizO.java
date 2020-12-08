@@ -69,7 +69,9 @@ public class QuizO extends AppCompatActivity {
                     for(int i=ccount-1; i>-1; i--){
                         odapnote.remover(Correct[i]);
                     }
-                    Intent intent = new Intent(getApplicationContext(), ComO.class);
+                    odapnote.setOdapAAll();
+                    odapnote.setOdapBAll();
+                    Intent intent = new Intent(getApplicationContext(), QuizNO.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }
@@ -97,7 +99,9 @@ public class QuizO extends AppCompatActivity {
                     for(int i=ccount-1; i>-1; i--){
                         odapnote.remover(Correct[i]);
                     }
-                    Intent intent = new Intent(getApplicationContext(), ComO.class);
+                    odapnote.setOdapAAll();
+                    odapnote.setOdapBAll();
+                    Intent intent = new Intent(getApplicationContext(), QuizNO.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }

@@ -59,6 +59,8 @@ public class FragmentQuiz extends Fragment {
                 odapNote odap=new odapNote();
                 odap.Acleaner();
                 odap.Bcleaner();
+                odap.NAcleaner();
+                odap.NBcleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizO.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
@@ -83,6 +85,7 @@ public class FragmentQuiz extends Fragment {
             {
                 odapNote odapA=new odapNote();
                 odapA.Acleaner();
+                odapA.NAcleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizA.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
@@ -107,6 +110,7 @@ public class FragmentQuiz extends Fragment {
             {
                 odapNote odapB=new odapNote();
                 odapB.Bcleaner();
+                odapB.NBcleaner();
                 Intent intent=new Intent(getActivity().getApplicationContext(), QuizB.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);

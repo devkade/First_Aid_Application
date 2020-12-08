@@ -55,7 +55,7 @@ public class QuizB extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(), ComB.class);
+                        Intent intent = new Intent(getApplicationContext(), QuizNB.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
@@ -79,7 +79,7 @@ public class QuizB extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(), ComB.class);
+                        Intent intent = new Intent(getApplicationContext(), QuizNB.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
