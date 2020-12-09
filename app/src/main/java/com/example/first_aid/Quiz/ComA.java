@@ -16,6 +16,7 @@ import java.util.List;
 public class ComA extends AppCompatActivity {
     private odapNote odapnoteA = new odapNote();
     private List<List<String>> odapA = odapnoteA.getOdapA();
+    private List<List<String>> odapNA = odapnoteA.getOdapNA();
     private ListView listView;
     private ListViewAdapter adapter;
 
@@ -23,8 +24,12 @@ public class ComA extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_comment);
 
-        final int[] index=new int[odapA.size()];
+        final int[] index=new int[odapA.size()+odapNA.size()];
         for(int i = 0; i< odapA.size(); i++){
+            index[i]=i;
+        }
+
+        for(int i = odapA.size(); i<odapA.size()+odapNA.size(); i++){
             index[i]=i;
         }
 
@@ -37,9 +42,13 @@ public class ComA extends AppCompatActivity {
             adapter.addItem(odapA.get(i).get(0), odapA.get(i).get(1), odapA.get(i).get(2));
         }
 
+        for(int i = 0; i< odapNA.size(); i++){
+            adapter.addItem(odapNA.get(i).get(0), odapNA.get(i).get(1), odapNA.get(i).get(2));
+        }
+
         odapNote odapnote=new odapNote();
         odapnote.setOdapAAll();
-
+        odapnote.setOdapANumAll();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

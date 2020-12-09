@@ -53,7 +53,7 @@ public class QuizA extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Intent intent = new Intent(getApplicationContext(), ComA.class);
+                    Intent intent = new Intent(getApplicationContext(), QuizNA.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }
@@ -77,7 +77,7 @@ public class QuizA extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-                    Intent intent = new Intent(getApplicationContext(), ComA.class);
+                    Intent intent = new Intent(getApplicationContext(), QuizNA.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }

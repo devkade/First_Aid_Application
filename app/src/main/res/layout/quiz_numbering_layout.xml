@@ -33,15 +33,9 @@
         <TextView
             android:id="@+id/quiz_question_n"
             android:layout_width="match_parent"
-            android:layout_height="105dp"
+            android:layout_height="149dp"
             android:text="TextView"
             android:textSize="24sp" />
-
-        <ImageView
-            android:id="@+id/quiz_image_n"
-            android:layout_width="match_parent"
-            android:layout_height="208dp"
-            tools:srcCompat="@tools:sample/avatars" />
 
         <Button
             android:id="@+id/quiz_1"

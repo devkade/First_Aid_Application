@@ -16,6 +16,7 @@ import com.example.first_aid.database.odapNote;
 public class ComB extends AppCompatActivity {
     private odapNote odapnoteB = new odapNote();
     private List<List<String>> odapB = odapnoteB.getOdapB();
+    private List<List<String>> odapNB = odapnoteB.getOdapNB();
     private ListView listView;
     private ListViewAdapter adapter;
 
@@ -23,8 +24,12 @@ public class ComB extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_comment);
 
-        final int[] index=new int[odapB.size()];
+        final int[] index=new int[odapB.size()+odapNB.size()];
         for(int i=0; i<odapB.size(); i++){
+            index[i]=i;
+        }
+
+        for(int i = odapB.size(); i<odapB.size()+odapNB.size(); i++){
             index[i]=i;
         }
 
@@ -37,9 +42,13 @@ public class ComB extends AppCompatActivity {
             adapter.addItem(odapB.get(i).get(0), odapB.get(i).get(1), odapB.get(i).get(2));
         }
 
+        for(int i = 0; i< odapNB.size(); i++){
+            adapter.addItem(odapNB.get(i).get(0), odapNB.get(i).get(1), odapNB.get(i).get(2));
+        }
+
         odapNote odapnote=new odapNote();
         odapnote.setOdapBAll();
-
+        odapnote.setOdapBNumAll();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

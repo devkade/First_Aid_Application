@@ -51,16 +51,19 @@
         </receiver>
 
         <activity android:name=".Quiz.QuizA" />
+        <activity android:name=".Quiz.QuizNA" />
         <activity android:name=".Quiz.ComA" />
         <activity android:name=".Quiz.CommentA" />
         <activity android:name=".Quiz.NcomlistA" />
         <activity android:name=".Quiz.NcommentA" />
         <activity android:name=".Quiz.QuizB" />
+        <activity android:name=".Quiz.QuizNB" />
         <activity android:name=".Quiz.ComB" />
         <activity android:name=".Quiz.CommentB" />
         <activity android:name=".Quiz.NcomlistB" />
         <activity android:name=".Quiz.NcommentB" />
         <activity android:name=".Quiz.QuizO" />
+        <activity android:name=".Quiz.QuizNO" />
         <activity android:name=".Quiz.ComO" />
         <activity android:name=".Quiz.CommentO" />
         <activity android:name=".Quiz.NcomlistO" />

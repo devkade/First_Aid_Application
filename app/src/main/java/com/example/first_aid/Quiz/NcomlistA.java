@@ -9,13 +9,16 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.first_aid.R;
+import com.example.first_aid.database.numQuiz;
 import com.example.first_aid.database.oxquiz;
 
 import java.util.List;
 
 public class NcomlistA extends AppCompatActivity {
     private oxquiz quizA = new oxquiz();
+    private numQuiz quizNA = new numQuiz();
     private List<List<String>> listA = quizA.getoxA();
+    private List<List<String>> listNA = quizNA.getnumA();
     private ListView listView;
     private ListViewAdapter adapter;
 
@@ -23,8 +26,12 @@ public class NcomlistA extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_comment);
 
-        final int[] index=new int[listA.size()];
+        final int[] index=new int[listA.size()+listNA.size()];
         for(int i = 0; i< listA.size(); i++){
+            index[i]=i;
+        }
+
+        for(int i = listNA.size(); i<listA.size()+listNA.size(); i++){
             index[i]=i;
         }
 
@@ -35,6 +42,10 @@ public class NcomlistA extends AppCompatActivity {
 
         for(int i = 0; i< listA.size(); i++){
             adapter.addItem(listA.get(i).get(0), listA.get(i).get(1), listA.get(i).get(2));
+        }
+
+        for(int i = 0; i< listNA.size(); i++){
+            adapter.addItem(listNA.get(i).get(0), listNA.get(i).get(1), listNA.get(i).get(2));
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

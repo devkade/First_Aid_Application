@@ -18,6 +18,7 @@ import java.util.List;
 public class NcomlistO extends AppCompatActivity {
     private odapNote quizO= new odapNote();
     private List<List<String>> listO = quizO.getOdapAllA();
+    private List<List<String>> listNO = quizO.getOdapNAllA();
     private ListView listView;
     private ListViewAdapter adapter;
 
@@ -29,8 +30,12 @@ public class NcomlistO extends AppCompatActivity {
             Toast.makeText(NcomlistO.this, "아직 오답이 없습니다.", Toast.LENGTH_SHORT).show();
         }
 
-        final int[] index=new int[listO.size()];
+        final int[] index=new int[listO.size()+ listNO.size()];
         for(int i=0; i<listO.size(); i++){
+            index[i]=i;
+        }
+
+        for(int i = listNO.size(); i< listO.size()+ listNO.size(); i++){
             index[i]=i;
         }
 
@@ -41,6 +46,10 @@ public class NcomlistO extends AppCompatActivity {
 
         for(int i=0; i<listO.size(); i++){
             adapter.addItem(listO.get(i).get(0), listO.get(i).get(1), listO.get(i).get(2));
+        }
+
+        for(int i = 0; i< listNO.size(); i++){
+            adapter.addItem(listNO.get(i).get(0), listNO.get(i).get(1), listNO.get(i).get(2));
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

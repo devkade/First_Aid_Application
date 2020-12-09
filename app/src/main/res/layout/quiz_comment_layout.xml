@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/quiz_image"
@@ -60,14 +60,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Answer"
-            android:textSize="32sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/Comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Comment"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/Comment_image"
