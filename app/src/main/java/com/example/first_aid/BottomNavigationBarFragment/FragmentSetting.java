@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.example.first_aid.R;
 import com.kyleduo.switchbutton.SwitchButton;
@@ -40,12 +41,18 @@ public class FragmentSetting extends Fragment {
         switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                TextView ls_txt = (TextView) v.findViewById(R.id.lockscreen_txt);
                 // 스위치 버튼이 체크되었는지 검사하여 텍스트뷰에 각 경우에 맞게 출력합니다.
                 boolean lockscreen_on;
                 Log.d(TAG, "boolean: " + isChecked);
                 lockscreen_on = isChecked;
                 if(onSettingListener != null){
                     onSettingListener.onSetting(lockscreen_on);
+                }
+                if(isChecked) {
+                    ls_txt.setText("잠금화면\n활성화됨");
+                }else{
+                    ls_txt.setText("잠금화면\n비활성화됨");
                 }
             }
         });
