@@ -7,6 +7,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -23,11 +24,14 @@ import com.example.first_aid.BottomNavigationBarFragment.FragmentMain;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentQuiz;
 import com.example.first_aid.BottomNavigationBarFragment.FragmentSetting;
 import com.example.first_aid.FirstAid.FirstAidPage1_1;
+import com.example.first_aid.LockScreen.LockScreenActivity;
 import com.example.first_aid.MainTabBar.MainFirstAidTab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.first_aid.LockScreen.RealService;
+import static android.content.ContentValues.TAG;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+                            implements FragmentSetting.OnSettingListener {
 
     private Intent serviceIntent;
 
@@ -38,12 +42,29 @@ public class MainActivity extends AppCompatActivity {
     FragmentSetting fragmentSetting;
     MainFirstAidTab mainFirstAidTab;
     FirstAidPage1_1 firstAidPage1_1;
+    boolean ls_on;
+    private SharedPreferences appData;
+
+
+
+    @Override
+    public void onSetting(boolean lockscreen_on){
+        ls_on = lockscreen_on;
+        Log.d(TAG, "ls_on: " + ls_on);
+        save();
+        load();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCrate MainActivity: " + ls_on);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        appData = getSharedPreferences("appData", MODE_PRIVATE);
+        load();
+
 
 
         // 서비스 실행
@@ -59,13 +80,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        if (RealService.serviceIntent==null) {
+        if (RealService.serviceIntent == null) {
             serviceIntent = new Intent(this, RealService.class);
             startService(serviceIntent);
         } else {
             serviceIntent = RealService.serviceIntent;//getInstance().getApplication();
             //Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
         }
+
 
 
         // 프래그먼트 생성
@@ -100,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.setting:{
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragmentSetting).commitAllowingStateLoss();
+                        Bundle bundle = new Bundle();
+                        bundle.putBoolean("ls_on",ls_on);
+                        Log.d(TAG, "MainActivity ls_on: " + ls_on);
+                        fragmentSetting.setArguments(bundle);
                         return true;
                     }
 
@@ -111,11 +137,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // 설정값을 저장하는 함수
+    private void save() {
+        // SharedPreferences 객체만으론 저장 불가능 Editor 사용
+        SharedPreferences.Editor editor = appData.edit();
+
+        // 에디터객체.put타입( 저장시킬 이름, 저장시킬 값 )
+        // 저장시킬 이름이 이미 존재하면 덮어씌움
+        editor.putBoolean("SAVE_Lockscreen_DATA", ls_on);
+
+        // apply, commit 을 안하면 변경된 내용이 저장되지 않음
+        editor.apply();
+    }
+
+    // 설정값을 불러오는 함수
+    private void load() {
+        // SharedPreferences 객체.get타입( 저장된 이름, 기본값 )
+        // 저장된 이름이 존재하지 않을 시 기본값
+        ls_on = appData.getBoolean("SAVE_Lockscreen_DATA", false);
+    }
+
+
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (serviceIntent!=null) {
+        if (serviceIntent != null) {
             stopService(serviceIntent);
             serviceIntent = null;
         }

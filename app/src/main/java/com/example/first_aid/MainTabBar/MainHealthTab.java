@@ -35,7 +35,6 @@ public class MainHealthTab extends Fragment {
     String reporter;
     String num;
     String[] s_content = {"News1", "News2", "News3", "News4", "News5", "News6", "News7", "News8"};
-    public int news_num;
     int i = 0;
 
     public MainHealthTab()
@@ -54,11 +53,11 @@ public class MainHealthTab extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main_health_tab, container, false);
 
+        Log.d(TAG, "set news_name");
 
-
-        String[] news_name = {"1", "2", "3", "4", "5", "6", "7", "8",
-                "1", "2", "3", "4", "5", "6", "7", "8",
-                "1", "2", "3", "4", "5", "6", "7", "8",
+        String[] news_name = {"a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8",
+                "b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8",
+                "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8",
                 "News1", "News2", "News3", "News4", "News5", "News6", "News7", "News8"};
 
 
@@ -68,12 +67,13 @@ public class MainHealthTab extends Fragment {
         DocumentReference docRef;
 
         for(int news_num = 1; news_num <= 8; news_num++) {
+            Log.d(TAG, "start loop");
             content = s_content[news_num - 1];
             docRef = db.collection("HealthNews").document(s_content[news_num - 1]);
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
+                    Log.d(TAG, "read from firebase");
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
@@ -117,6 +117,7 @@ public class MainHealthTab extends Fragment {
 
         return rootView;
     }
+
 
 
 }
